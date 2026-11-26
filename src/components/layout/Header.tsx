@@ -1,12 +1,16 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { Heart, Menu, Search, ShoppingBag, X } from "lucide-react";
 import { Wordmark } from "@/components/layout/Wordmark";
-import { QuoteDrawer } from "@/components/quote/QuoteDrawer";
 import { useFavorites } from "@/lib/favorites/store";
 import { quoteCount, useQuote } from "@/lib/quote/store";
+
+const QuoteDrawer = dynamic(() => import("@/components/quote/QuoteDrawer").then((mod) => mod.QuoteDrawer), {
+  ssr: false,
+});
 
 export interface SearchHit {
   title: string;
@@ -79,7 +83,10 @@ export function Header({ hits }: { hits: SearchHit[] }) {
   const navRef = useRef<HTMLElement>(null);
   const ready = useQuote((state) => state.ready);
   const count = useQuote((state) => (state.ready ? quoteCount(state.lines) : 0));
+  const drawer = useQuote((state) => state.drawer);
   const setDrawer = useQuote((state) => state.setDrawer);
+  const [drawerMounted, setDrawerMounted] = useState(false);
+  if (drawer && !drawerMounted) setDrawerMounted(true);
   const saved = useFavorites((state) => (state.ready ? state.slugs.length : 0));
   const searchId = useId();
   const results = useMemo(() => {
@@ -221,7 +228,7 @@ export function Header({ hits }: { hits: SearchHit[] }) {
         </ul>
         {query.trim().length >= 2 && results.length === 0 ? <p className="mt-3 text-sm text-ink-soft">Bu adla kayıt yok.</p> : null}
       </dialog>
-      <QuoteDrawer />
+      {drawerMounted ? <QuoteDrawer /> : null}
     </header>
   );
 }

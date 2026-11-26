@@ -12,13 +12,19 @@ import { jsonContentSource } from "@/lib/content/source";
 import "./globals.css";
 
 const instrument = localFont({
-  src: [
-    { path: "../fonts/InstrumentSerif-Regular.woff2", weight: "400", style: "normal" },
-    { path: "../fonts/InstrumentSerif-Italic.woff2", weight: "400", style: "italic" },
-  ],
+  src: [{ path: "../fonts/InstrumentSerif-Regular.woff2", weight: "400", style: "normal" }],
   variable: "--font-instrument-serif",
   display: "swap",
+  preload: true,
   adjustFontFallback: "Times New Roman",
+});
+
+const instrumentItalic = localFont({
+  src: [{ path: "../fonts/InstrumentSerif-Italic.woff2", weight: "400", style: "italic" }],
+  variable: "--font-instrument-italic",
+  display: "swap",
+  preload: false,
+  adjustFontFallback: false,
 });
 
 const young = localFont({
@@ -26,6 +32,7 @@ const young = localFont({
   weight: "400",
   variable: "--font-young-serif",
   display: "swap",
+  preload: false,
   adjustFontFallback: "Times New Roman",
 });
 
@@ -34,6 +41,7 @@ const hanken = localFont({
   weight: "100 900",
   variable: "--font-hanken",
   display: "swap",
+  preload: false,
   adjustFontFallback: "Arial",
 });
 
@@ -68,7 +76,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html
       lang="tr"
-      className={`${instrument.variable} ${young.variable} ${hanken.variable} ${plex.variable}`}
+      className={`${instrument.variable} ${instrumentItalic.variable} ${young.variable} ${hanken.variable} ${plex.variable}`}
     >
       <body className="min-h-full antialiased">
         <a className="skip" href="#icerik">

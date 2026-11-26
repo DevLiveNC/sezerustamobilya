@@ -36,3 +36,10 @@ The in-memory rate limit used by the quote action is per server instance. On Ver
 ## Illustrative images
 
 `public/images/site/` holds the eleven atmosphere pictures (hero, category cards, guide cards). `content/images/site.json` marks each `kind: "illustrative"`. They are not photographs of listed pieces. Product cards and product pages keep the “FOTOĞRAF ATÖLYEDEN GELECEK” placeholder.
+
+## Belgeler
+
+- [Proje planı](docs/PLAN.md)
+- [Başlangıç promptu](docs/baslangic-prompt.md)
+- [Araştırma](docs/arastirma/ARASTIRMA.md)
+- [Proje skill](docs/skill/SKILL.md)

@@ -38,6 +38,11 @@ html {
   text-rendering: optimizeLegibility;
 }
 
+.font-display em {
+  font-family: var(--font-instrument-italic), Georgia, serif;
+  font-style: italic;
+}
+
 body {
   background: var(--color-shaving);
   color: var(--color-ink);
