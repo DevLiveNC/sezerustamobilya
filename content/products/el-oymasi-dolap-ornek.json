@@ -1,0 +1,33 @@
+{
+  "kind": "carved-piece",
+  "slug": "el-oymasi-dolap-ornek",
+  "category": "el-oymasi",
+  "title": "El oyması dolap — örnek kayıt",
+  "summary": "Örnek katalog kaydı. Ağaç türü, ölçü, cila ve fotoğraf işletmeden bekleniyor.",
+  "images": [
+    {
+      "id": "dolap-front",
+      "alt": "Temsilî görsel. İki kapaklı, çiçek ve yaprak oymalı yüksek dolap.",
+      "role": "front"
+    },
+    {
+      "id": "dolap-45",
+      "alt": "Temsilî görsel. Ceviz tonlu el oyması dolap, yandan; kapaklarda çiçek ve yaprak.",
+      "role": "angle"
+    },
+    {
+      "id": "dolap-detail",
+      "alt": "Temsilî görsel. Ceviz tonlu el oyması dolap kapağında bir çiçeğin yakından görünüşü.",
+      "role": "detail"
+    }
+  ],
+  "isSample": true,
+  "confirmedByOwner": false,
+  "publishedAt": "2026-11-26",
+  "pieceType": "dolap",
+  "wood": null,
+  "finish": null,
+  "dimensions": { "widthCm": null, "heightCm": null, "depthCm": null },
+  "availability": "mevcut",
+  "carvingDetailImageId": "dolap-detail"
+}

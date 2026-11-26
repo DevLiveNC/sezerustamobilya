@@ -1,0 +1,242 @@
+{
+  "images": [
+    {
+      "id": "home-hero-4x5",
+      "src": "",
+      "width": 1600,
+      "height": 2000,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "placeholder",
+      "isPlaceholder": true,
+      "slot": "home-hero-4x5"
+    },
+    {
+      "id": "atolye-wide-3x2",
+      "src": "",
+      "width": 2400,
+      "height": 1600,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "placeholder",
+      "isPlaceholder": true,
+      "slot": "atolye-wide-3x2"
+    },
+    {
+      "id": "hands-carving-1x1",
+      "src": "",
+      "width": 1600,
+      "height": 1600,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "placeholder",
+      "isPlaceholder": true,
+      "slot": "hands-carving-1x1"
+    },
+    {
+      "id": "sandik-front",
+      "src": "/images/site/kat-oymali-sandik.webp",
+      "width": 1448,
+      "height": 1086,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "liveDevelopment-cekim",
+      "isPlaceholder": false,
+      "kind": "illustrative",
+      "position": "center",
+      "slot": "product-front"
+    },
+    {
+      "id": "sandik-angle",
+      "src": "/images/products/urun-sandik-45.webp",
+      "width": 1600,
+      "height": 2000,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "liveDevelopment-cekim",
+      "isPlaceholder": false,
+      "kind": "illustrative",
+      "position": "center",
+      "slot": "product-angle"
+    },
+    {
+      "id": "sandik-detail",
+      "src": "/images/products/urun-sandik-detay.webp",
+      "width": 2048,
+      "height": 2048,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "liveDevelopment-cekim",
+      "isPlaceholder": false,
+      "kind": "illustrative",
+      "position": "center",
+      "slot": "product-detail"
+    },
+    {
+      "id": "sandik-scale",
+      "src": "",
+      "width": 1500,
+      "height": 2000,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "placeholder",
+      "isPlaceholder": true,
+      "slot": "product-scale"
+    },
+    {
+      "id": "ayna-front",
+      "src": "/images/products/urun-ayna-on.webp",
+      "width": 1600,
+      "height": 2000,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "liveDevelopment-cekim",
+      "isPlaceholder": false,
+      "kind": "illustrative",
+      "position": "center",
+      "slot": "product-front"
+    },
+    {
+      "id": "dolap-45",
+      "src": "/images/products/urun-dolap-45.webp",
+      "width": 1600,
+      "height": 2000,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "liveDevelopment-cekim",
+      "isPlaceholder": false,
+      "kind": "illustrative",
+      "position": "center",
+      "slot": "product-angle"
+    },
+    {
+      "id": "dolap-detail",
+      "src": "/images/products/urun-dolap-detay.webp",
+      "width": 2048,
+      "height": 2048,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "liveDevelopment-cekim",
+      "isPlaceholder": false,
+      "kind": "illustrative",
+      "position": "center",
+      "slot": "product-detail"
+    },
+    {
+      "id": "ayna-detail",
+      "src": "/images/products/urun-ayna-detay.webp",
+      "width": 2048,
+      "height": 2048,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "liveDevelopment-cekim",
+      "isPlaceholder": false,
+      "kind": "illustrative",
+      "position": "center",
+      "slot": "product-detail"
+    },
+    {
+      "id": "sandik2-detail",
+      "src": "/images/products/urun-sandik2-detay.webp",
+      "width": 2048,
+      "height": 2048,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "liveDevelopment-cekim",
+      "isPlaceholder": false,
+      "kind": "illustrative",
+      "position": "center",
+      "slot": "product-detail"
+    },
+    {
+      "id": "dolap-front",
+      "src": "/images/site/kat-oymali-dolap.webp",
+      "width": 1448,
+      "height": 1086,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "liveDevelopment-cekim",
+      "isPlaceholder": false,
+      "kind": "illustrative",
+      "position": "center",
+      "slot": "product-front"
+    },
+    {
+      "id": "sandik2-front",
+      "src": "/images/products/urun-sandik2-on.webp",
+      "width": 1600,
+      "height": 2000,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "liveDevelopment-cekim",
+      "isPlaceholder": false,
+      "kind": "illustrative",
+      "position": "center",
+      "slot": "product-front"
+    },
+    {
+      "id": "ozel-front",
+      "src": "/images/site/kat-ozel-uretim.webp",
+      "width": 1254,
+      "height": 1254,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "liveDevelopment-cekim",
+      "isPlaceholder": false,
+      "kind": "illustrative",
+      "position": "left",
+      "slot": "product-front"
+    },
+    {
+      "id": "ozel-detail",
+      "src": "/images/site/rehber-bakim.webp",
+      "width": 1448,
+      "height": 1086,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "liveDevelopment-cekim",
+      "isPlaceholder": false,
+      "kind": "illustrative",
+      "position": "center",
+      "slot": "product-detail"
+    },
+    {
+      "id": "melamin-front",
+      "src": "/images/site/kat-melamin-kapi.webp",
+      "width": 1254,
+      "height": 1254,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "liveDevelopment-cekim",
+      "isPlaceholder": false,
+      "kind": "illustrative",
+      "position": "left",
+      "slot": "product-front"
+    },
+    {
+      "id": "pvc-front",
+      "src": "/images/site/kat-pvc-kapi.webp",
+      "width": 1254,
+      "height": 1254,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "liveDevelopment-cekim",
+      "isPlaceholder": false,
+      "kind": "illustrative",
+      "position": "left",
+      "slot": "product-front"
+    },
+    {
+      "id": "ref-ornek",
+      "src": "",
+      "width": 2000,
+      "height": 1500,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "placeholder",
+      "isPlaceholder": true,
+      "slot": "reference-after"
+    },
+    {
+      "id": "ref-once",
+      "src": "",
+      "width": 2000,
+      "height": 1500,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "placeholder",
+      "isPlaceholder": true,
+      "slot": "reference-before"
+    },
+    {
+      "id": "ref-sonra",
+      "src": "",
+      "width": 2000,
+      "height": 1500,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "placeholder",
+      "isPlaceholder": true,
+      "slot": "reference-after"
+    }
+  ]
+}

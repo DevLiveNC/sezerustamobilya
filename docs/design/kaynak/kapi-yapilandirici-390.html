@@ -1,0 +1,105 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kapı yapılandırıcı</title><link rel="stylesheet" href="talas-cila.css"><style>
+.crumb{padding:28px 0 0;display:flex;gap:10px;font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;color:var(--ink-soft)}
+.crumb b{color:var(--ink);font-weight:500}
+.ttl{display:flex;justify-content:space-between;align-items:flex-end;padding:26px 0 34px;border-bottom:1px solid var(--line)}
+.ttl h1{font-size:84px}
+.ttl h1 .todo{font-size:15px;vertical-align:middle;margin-left:12px;letter-spacing:0}
+.seg{display:inline-flex;border:1px solid var(--ink);border-radius:3px;overflow:hidden}
+.seg a{padding:0 22px;height:44px;display:flex;align-items:center;font-weight:600;font-size:14px}
+.seg a.on{background:var(--walnut);color:var(--shaving)}
+.cfg{display:grid;grid-template-columns:minmax(0,7.4fr) minmax(0,4.6fr);gap:0;border-bottom:1px solid var(--line)}
+.board{background:var(--oak);border-right:1px solid var(--line);padding:30px 34px 34px;background-image:linear-gradient(rgba(33,27,22,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(33,27,22,.06) 1px,transparent 1px),linear-gradient(rgba(33,27,22,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(33,27,22,.035) 1px,transparent 1px);background-size:80px 80px,80px 80px,16px 16px,16px 16px}
+.board .bh{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.board .note{display:flex;gap:10px;align-items:center;margin-top:8px;font-size:14px;color:var(--ink-soft)}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:12px 28px;margin-top:22px;padding:18px 20px;background:rgba(250,246,239,.7);border:1px solid var(--line);font-size:13.5px}
+.legend div{display:flex;align-items:center;gap:12px}
+.aria{margin-top:18px;border-top:1px dashed #B9A587;padding-top:14px}.aria p{font-size:14px;margin-top:4px}
+.board .note{margin-top:18px}
+.panel{background:var(--linen);padding:8px 36px 36px}
+.st{padding:26px 0;border-bottom:1px solid var(--line)}
+.st:last-child{border-bottom:0}
+.st .h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px}
+.st .h .n{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;font-weight:500}
+.st .h .v{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;color:var(--ink-soft)}
+.st h3{font-family:var(--f-serif);font-weight:400;font-size:22px;margin:-6px 0 14px}
+.sel{height:52px;border:1px solid var(--ink);border-radius:3px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:var(--shaving)}
+.dims{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.num label{display:block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;color:var(--ink-soft);margin-bottom:6px}
+.num .box{height:56px;border:1px solid var(--ink);border-radius:3px;display:grid;grid-template-columns:44px 1fr 44px;align-items:center;background:var(--shaving)}
+.num .box span{display:flex;justify-content:center}
+.num .box b{font-family:var(--f-mono);font-size:22px;font-weight:500;text-align:center}
+.num .box b small{font-size:12px;color:var(--ink-soft);margin-left:4px}
+.num .box.focus{outline:2px solid var(--varnish);outline-offset:2px}
+.info{display:flex;gap:10px;margin-top:14px;font-size:13.5px;color:var(--ink-soft);line-height:1.45}
+.open{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.open a{border:1px solid var(--line);border-radius:3px;padding:12px 6px 10px;text-align:center;font-size:12.5px;font-weight:500;background:var(--shaving)}
+.open a.on{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink);background:var(--linen)}
+.open svg{display:block;margin:0 auto 8px;width:44px;height:58px}
+.sw{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.sw i{aspect-ratio:1;border:1px dashed #B9A587;border-radius:3px;background:repeating-linear-gradient(45deg,transparent 0 5px,rgba(166,140,108,.22) 5px 6px)}
+.opt{display:flex;flex-direction:column;gap:8px}
+.opt div{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);border-radius:3px;padding:12px 14px;font-size:14.5px;background:var(--shaving)}
+.opt div .k{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;color:var(--ink-soft);width:110px}
+.qty{display:flex;align-items:center;gap:16px}
+.qty .box{height:52px;width:150px;border:1px solid var(--ink);border-radius:3px;display:grid;grid-template-columns:44px 1fr 44px;align-items:center;background:var(--shaving)}
+.qty .box span{display:flex;justify-content:center}.qty b{font-family:var(--f-mono);font-size:20px;font-weight:500;text-align:center}
+.sum{position:relative;background:var(--walnut);color:var(--shaving);margin-top:0}
+.sum .wrap{display:flex;align-items:center;justify-content:space-between;height:96px;gap:24px}
+.sum .t{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;line-height:1.7}
+.sum .t span{color:rgba(242,234,223,.6)}
+.sum .b{display:flex;gap:10px}
+.below{padding:96px 0 120px;display:grid;grid-template-columns:repeat(3,1fr);gap:48px}
+.below h4{font-family:var(--f-display);font-size:34px;font-weight:400;line-height:1.05;margin:14px 0 10px}
+.below p{font-size:15px;color:var(--ink-soft)}
+
+body{padding-bottom:118px}
+.ttl{display:block;padding:18px 0 22px}
+.ttl h1{font-size:54px;line-height:.95}
+.ttl h1 .todo{display:inline-block;margin:10px 0 0;font-size:11px;white-space:normal}
+.seg{display:grid;grid-template-columns:1fr 1fr;width:100%;margin-top:18px}.seg a{justify-content:center}
+.board{padding:16px 12px 16px;border-right:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:0 -20px}
+.panel{padding:0 0 8px;background:transparent}
+.st{padding:22px 0}
+.open{grid-template-columns:repeat(4,1fr);gap:6px}.open a{font-size:11px;padding:8px 2px}
+.open svg{width:34px;height:46px}
+.sw{gap:7px}
+.opt div{flex-direction:column;align-items:flex-start;gap:6px}
+.qty{flex-direction:column;align-items:flex-start;gap:10px}
+.msum{position:fixed;left:0;right:0;bottom:0;background:var(--walnut);color:var(--shaving);padding:12px 16px 16px;z-index:20}
+.msum .t{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;margin-bottom:10px;display:flex;justify-content:space-between}
+.msum .t span{color:rgba(242,234,223,.6)}
+.msum .r{display:grid;grid-template-columns:48px 48px 1fr;gap:8px}
+.msum .r a{height:48px;border-radius:3px;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:14.5px;border:1px solid rgba(242,234,223,.4)}
+.msum .r a.p{background:var(--shaving);color:var(--walnut);border-color:var(--shaving)}
+.todo{white-space:normal}
+</style></head><body class="m"><div class="ribbon"><b>ÖNİZLEME</b> · fotoğraf ve bilgiler bekleniyor</div><header class="hdr"><div class="wrap"><a class="wm" href="#"><span class="a">Sezer Usta</span><span class="b">MOBİLYA<i></i>GAZİMAĞUSA</span></a><div class="burger"><a class="qicon"><svg class="ico" viewBox="0 0 24 24" style=""><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></svg><span class="n">0</span></a><span class="lines"></span></div></div></header><main><div class="wrap">
+<div class="ttl"><span class="mono-s soft">KAPI YAPILANDIRICI · TOPTAN + PERAKENDE</span><h1 class="display" style="margin-top:12px">Melamin kapı<br><span class="todo">[SAHİP DOLDURACAK: model adı]</span></h1>
+<div class="seg"><a class="on">Melamin</a><a>PVC</a></div></div>
+<div class="board"><div class="bh" style="padding:0 6px"><span class="mono-s">ÖN GÖRÜNÜŞ · 1:20</span><span class="badge wait" style="font-size:9.5px">Ölçüler örnektir</span></div>
+<svg viewBox="0 0 470 790" width="100%" style="display:block" font-family="IBM Plex Mono"><defs><pattern id="hat" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V8" stroke="#211B16" stroke-width=".8"/></pattern></defs><path d="M60 680H450" stroke="#211B16" stroke-width="1.4"/><rect x="60" y="680" width="390" height="10" fill="url(#hat)" opacity=".35"/><path d="M154 680V76H438V680" fill="none" stroke="#211B16" stroke-width="1.4"/><path d="M170 680V92H422V680" fill="none" stroke="#211B16" stroke-width="1"/><rect x="172" y="94" width="248" height="586" fill="#FAF6EF" stroke="#211B16" stroke-width=".8"/><path d="M174 96L416 386.0L174 678" fill="none" stroke="#A8662E" stroke-width="1" stroke-dasharray="6 5"/><rect x="417" y="152" width="7" height="26" fill="#211B16"/><rect x="417" y="376.0" width="7" height="26" fill="#211B16"/><rect x="417" y="590" width="7" height="26" fill="#211B16"/><circle cx="196" cy="386.0" r="9" fill="none" stroke="#211B16" stroke-width="1.2"/><rect x="192" y="383.0" width="44" height="6" rx="3" fill="#211B16"/><circle cx="196" cy="414.0" r="2.6" fill="#211B16"/><path d="M196 415.0v7" stroke="#211B16" stroke-width="2"/><text x="296.0" y="64" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" font-weight="400" fill="#6A5D50" letter-spacing=".08em" >KASA · [SAHİP DOLDURACAK]</text><path d="M170 694V742M422 694V742" stroke="#211B16" stroke-width=".8"/><path d="M170 732H422" stroke="#211B16"/><path d="M170 732l9 -3.5v7zM422 732l-9 -3.5v7z" fill="#211B16"/><rect x="238.0" y="720" width="116" height="24" fill="#4A3426"/><text x="296.0" y="736.5" text-anchor="middle" font-family="IBM Plex Mono" font-size="12.5" font-weight="600" fill="#FAF6EF" letter-spacing=".08em" >E 90 cm</text><text x="296.0" y="766" text-anchor="middle" font-family="IBM Plex Mono" font-size="9.5" font-weight="400" fill="#6A5D50" letter-spacing=".08em" >GENİŞLİK · ÖRNEK</text><path d="M144 92H96M144 680H96" stroke="#211B16" stroke-width=".8"/><path d="M106 92V680" stroke="#211B16"/><path d="M106 92l-3.5 9h7zM106 680l-3.5 -9h7z" fill="#211B16"/><rect x="94" y="326.0" width="24" height="120" fill="#4A3426"/><text transform="translate(110.5 386.0) rotate(-90)" text-anchor="middle" font-family="IBM Plex Mono" font-size="12.5" font-weight="600" fill="#FAF6EF" letter-spacing=".08em">B 210 cm</text></svg>
+<div class="note" style="padding:0 6px;font-size:12.5px;margin-top:4px"><svg class="ico" viewBox="0 0 24 24" style=""><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg> Sağdan içe açılır · çizim ölçüye göre güncellenir.</div></div>
+<div class="panel">
+<div class="st"><div class="h"><span class="n">01 — MODEL</span></div><div class="sel"><span><span class="todo">[SAHİP DOLDURACAK: model / seri adları]</span></span><svg class="ico" viewBox="0 0 24 24" style=""><path d="m6 9 6 6 6-6"/></svg></div></div>
+<div class="st"><div class="h"><span class="n">02 — ÖLÇÜ</span><span class="v">CM</span></div>
+<div class="dims"><div class="num"><label>GENİŞLİK (E)</label><div class="box focus"><span><svg class="ico" viewBox="0 0 24 24" style=""><path d="M5 12h14"/></svg></span><b>90</b><span><svg class="ico" viewBox="0 0 24 24" style=""><path d="M5 12h14M12 5v14"/></svg></span></div></div>
+<div class="num"><label>YÜKSEKLİK (B)</label><div class="box"><span><svg class="ico" viewBox="0 0 24 24" style=""><path d="M5 12h14"/></svg></span><b>210</b><span><svg class="ico" viewBox="0 0 24 24" style=""><path d="M5 12h14M12 5v14"/></svg></span></div></div></div>
+<div class="info"><svg class="ico" viewBox="0 0 24 24" style=""><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg><span>Ölçü aralıkları örnektir; kesin ölçüler için teklif alın. <span class="todo">[SAHİP DOLDURACAK: ölçü aralıkları]</span></span></div></div>
+<div class="st"><div class="h"><span class="n">03 — AÇILIM YÖNÜ</span></div>
+<div class="open"><a class=""><svg viewBox="0 -8 56 76"><rect x="0" y="28" width="10" height="5" fill="#211B16"/><rect x="46" y="28" width="10" height="5" fill="#211B16"/>
+<path d="M10 30V-6" stroke="#211B16" stroke-width="2.6"/><path d="M10 -6A36 36 0 0 1 46 30" fill="none" stroke="#A8662E" stroke-dasharray="3 3"/><circle cx="10" cy="30" r="2" fill="#211B16"/></svg>Soldan içe</a><a class="on"><svg viewBox="0 -8 56 76"><rect x="0" y="28" width="10" height="5" fill="#211B16"/><rect x="46" y="28" width="10" height="5" fill="#211B16"/>
+<path d="M46 30V-6" stroke="#211B16" stroke-width="2.6"/><path d="M46 -6A36 36 0 0 0 10 30" fill="none" stroke="#A8662E" stroke-dasharray="3 3"/><circle cx="46" cy="30" r="2" fill="#211B16"/></svg>Sağdan içe</a><a class=""><svg viewBox="0 -8 56 76"><rect x="0" y="28" width="10" height="5" fill="#211B16"/><rect x="46" y="28" width="10" height="5" fill="#211B16"/>
+<path d="M10 30V66" stroke="#211B16" stroke-width="2.6"/><path d="M10 66A36 36 0 0 0 46 30" fill="none" stroke="#A8662E" stroke-dasharray="3 3"/><circle cx="10" cy="30" r="2" fill="#211B16"/></svg>Soldan dışa</a><a class=""><svg viewBox="0 -8 56 76"><rect x="0" y="28" width="10" height="5" fill="#211B16"/><rect x="46" y="28" width="10" height="5" fill="#211B16"/>
+<path d="M46 30V66" stroke="#211B16" stroke-width="2.6"/><path d="M46 66A36 36 0 0 1 10 30" fill="none" stroke="#A8662E" stroke-dasharray="3 3"/><circle cx="46" cy="30" r="2" fill="#211B16"/></svg>Sağdan dışa</a></div></div>
+<div class="st"><div class="h"><span class="n">04 — RENK / DESEN</span><span class="v">SEÇİLMEDİ</span></div><div class="sw"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="info"><svg class="ico" viewBox="0 0 24 24" style=""><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg><span><span class="todo">[SAHİP DOLDURACAK: renk ve desen kartelası]</span></span></div></div>
+<div class="st"><div class="h"><span class="n">05 — KASA · KULP · KİLİT</span></div>
+<div class="opt"><div><span class="k">KASA / PERVAZ</span><span><span class="todo">[SAHİP DOLDURACAK: seçenekler]</span></span></div><div><span class="k">KULP / KOL</span><span><span class="todo">[SAHİP DOLDURACAK: seçenekler]</span></span></div><div><span class="k">KİLİT</span><span><span class="todo">[SAHİP DOLDURACAK: seçenekler]</span></span></div></div></div>
+<div class="st"><div class="h"><span class="n">06 — ADET</span></div><div class="qty"><div class="box"><span><svg class="ico" viewBox="0 0 24 24" style=""><path d="M5 12h14"/></svg></span><b>1</b><span><svg class="ico" viewBox="0 0 24 24" style=""><path d="M5 12h14M12 5v14"/></svg></span></div><span style="font-size:13px;color:var(--ink-soft)">Toptan en az <span class="todo">[SAHİP DOLDURACAK: adet]</span> — üstü “toptan talep” olarak işaretlenir.</span></div></div>
+</div></div></main><footer class="ftr"><div class="wrap"><div class="grid">
+<div><a class="wm" href="#"><span class="a">Sezer Usta</span><span class="b">MOBİLYA<i></i>GAZİMAĞUSA</span></a><p style="margin-top:22px;max-width:300px;color:rgba(242,234,223,.78);font-size:15px">“El oyma sanatı ve mobilya ustası.”</p></div>
+<div><h5>Ürünler</h5><ul><li>El oyması tek parçalar</li><li>Melamin kapı</li><li>PVC kapı</li><li>Özel üretim</li></ul></div>
+<div><h5>Atölye</h5><ul><li>Hakkımızda</li><li>Referanslar</li><li>Ölçü rehberi</li><li>Sık sorulanlar</li></ul></div>
+<div><h5>İletişim</h5><ul><li>+90 533 833 64 81 <span class="mono-s" style="opacity:.6">· WHATSAPP</span></li><li>Büyük Sanayi, Gazimağusa, Kuzey Kıbrıs</li><li><span class="todo on-dark">[SAHİP DOLDURACAK: çalışma saatleri]</span></li><li><span class="todo on-dark">[SAHİP DOLDURACAK: e-posta]</span></li></ul></div>
+</div><div class="base"><span>© SEZER USTA MOBİLYA · <span class="todo on-dark" style="font-size:10px">[SAHİP DOLDURACAK: ticari unvan]</span></span><span>GİZLİLİK · KVKK (TASLAK)</span><span>SİTE: LIVEDEVELOPMENT</span></div></div></footer>
+<div class="msum"><div class="t"><b style="font-weight:500">E 90 × B 210 · SAĞDAN İÇE · 1 AD.</b><span>ÖRNEK</span></div>
+<div class="r"><a aria-label="Bağlantıyı kopyala"><svg class="ico" viewBox="0 0 24 24" style=""><rect x="9" y="9" width="12" height="12" rx="1.5"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg></a><a aria-label="Çizimi indir"><svg class="ico" viewBox="0 0 24 24" style=""><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg></a><a class="p"><svg class="ico" viewBox="0 0 24 24" style=""><path d="M5 12h14M12 5v14"/></svg> Teklif listesine ekle</a></div></div></body></html>

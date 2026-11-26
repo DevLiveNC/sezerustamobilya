@@ -1,0 +1,104 @@
+{
+  "note": "Atmosphere pictures. kind illustrative means the picture is not a photograph of a listed piece. Product cards may reuse one until a file in public/images/products/ replaces it. Each use prints Temsilî görsel.",
+  "images": [
+    {
+      "id": "hero-1",
+      "src": "/images/site/hero-1.webp",
+      "width": 2400,
+      "height": 1350,
+      "kind": "illustrative",
+      "position": "right",
+      "alt": "Temsilî görsel. Solda boş duvar, sağda oyma vitrin, çiçek oymalı dolap ve sandık."
+    },
+    {
+      "id": "hero-2",
+      "src": "/images/site/hero-2.webp",
+      "width": 2400,
+      "height": 1350,
+      "kind": "illustrative",
+      "position": "right",
+      "alt": "Temsilî görsel. Önde çiçek oymalı sandık, arkada vitrin ve oyma dolap."
+    },
+    {
+      "id": "hero-3",
+      "src": "/images/site/hero-3.webp",
+      "width": 2400,
+      "height": 1350,
+      "kind": "illustrative",
+      "position": "right",
+      "alt": "Temsilî görsel. Oyma vitrin ve masa; kemerin ardında tezgâh ve oyma aletleri."
+    },
+    {
+      "id": "kat-oymali-dolap",
+      "src": "/images/site/kat-oymali-dolap.webp",
+      "width": 1448,
+      "height": 1086,
+      "kind": "illustrative",
+      "position": "center",
+      "alt": "Temsilî görsel. İki kapaklı, çiçek ve yaprak oymalı yüksek dolap."
+    },
+    {
+      "id": "kat-oymali-sandik",
+      "src": "/images/site/kat-oymali-sandik.webp",
+      "width": 1448,
+      "height": 1086,
+      "kind": "illustrative",
+      "position": "center",
+      "alt": "Temsilî görsel. Kapağı ve gövdesi çiçek oymalı kapaklı sandık."
+    },
+    {
+      "id": "kat-oymali-masa",
+      "src": "/images/site/kat-oymali-masa.webp",
+      "width": 1448,
+      "height": 1086,
+      "kind": "illustrative",
+      "position": "center",
+      "alt": "Temsilî görsel. Eteği ve ayakları çiçek oymalı masa."
+    },
+    {
+      "id": "kat-melamin-kapi",
+      "src": "/images/site/kat-melamin-kapi.webp",
+      "width": 1254,
+      "height": 1254,
+      "kind": "illustrative",
+      "position": "left",
+      "alt": "Temsilî görsel. Solda oyma konsol, sağda düz ahşap görünümlü kapı kanadı."
+    },
+    {
+      "id": "kat-pvc-kapi",
+      "src": "/images/site/kat-pvc-kapi.webp",
+      "width": 1254,
+      "height": 1254,
+      "kind": "illustrative",
+      "position": "left",
+      "alt": "Temsilî görsel. Solda oyma masa, ortada düz açık renk kapı kanadı."
+    },
+    {
+      "id": "kat-ozel-uretim",
+      "src": "/images/site/kat-ozel-uretim.webp",
+      "width": 1254,
+      "height": 1254,
+      "kind": "illustrative",
+      "position": "left",
+      "alt": "Temsilî görsel. Tezgâhta oyma kalemleri, tokmak ve yarım kalmış çiçek oyması."
+    },
+    {
+      "id": "rehber-olcu",
+      "src": "/images/site/rehber-olcu.webp",
+      "width": 1448,
+      "height": 1086,
+      "kind": "illustrative",
+      "position": "center",
+      "alt": "Temsilî görsel. Tezgâhta kapı ölçülü bir çizim, şerit metre ve kurşun kalem."
+    },
+    {
+      "id": "rehber-bakim",
+      "src": "/images/site/rehber-bakim.webp",
+      "width": 1448,
+      "height": 1086,
+      "kind": "illustrative",
+      "position": "center",
+      "alt": "Temsilî görsel. Oyma ahşabın yanında bakım bezi ve açık bir cila kutusu."
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "kind": "carved-piece",
+  "slug": "el-oymasi-sandik-satildi-ornek",
+  "category": "el-oymasi",
+  "title": "El oyması sandık — satıldı örnek kayıt",
+  "summary": "Örnek kayıt. Teklif listesinde satıldı işaretinin denenmesi için durur; gerçek bir satış değildir.",
+  "images": [
+    {
+      "id": "sandik2-front",
+      "alt": "Temsilî görsel. Ceviz tonlu el oyması sandık, önden; gövdede yıldız motifleri.",
+      "role": "front"
+    },
+    {
+      "id": "sandik2-detail",
+      "alt": "Temsilî görsel. Ceviz tonlu el oyması sandığın gövdesindeki yıldız motifi, yakından.",
+      "role": "detail"
+    }
+  ],
+  "isSample": true,
+  "confirmedByOwner": false,
+  "publishedAt": "2026-11-26",
+  "pieceType": "sandik",
+  "wood": null,
+  "finish": null,
+  "dimensions": { "widthCm": null, "heightCm": null, "depthCm": null },
+  "availability": "satildi",
+  "carvingDetailImageId": "sandik2-detail"
+}

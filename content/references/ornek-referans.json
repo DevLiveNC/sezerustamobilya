@@ -1,0 +1,28 @@
+{
+  "id": "ornek-referans",
+  "title": "Örnek referans kaydı",
+  "location": null,
+  "year": null,
+  "images": [
+    {
+      "id": "ref-ornek",
+      "alt": "Örnek referans için fotoğraf yeri",
+      "role": "process"
+    }
+  ],
+  "productSlugs": ["el-oymasi-sandik-ornek"],
+  "beforeAfter": {
+    "before": {
+      "id": "ref-once",
+      "alt": "Örnek referans için önce fotoğraf yeri",
+      "role": "before"
+    },
+    "after": {
+      "id": "ref-sonra",
+      "alt": "Örnek referans için sonra fotoğraf yeri",
+      "role": "after"
+    }
+  },
+  "clientConsent": true,
+  "isSample": true
+}

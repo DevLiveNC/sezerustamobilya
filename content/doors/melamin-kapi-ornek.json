@@ -1,0 +1,47 @@
+{
+  "kind": "door-model",
+  "slug": "melamin-kapi-ornek",
+  "category": "melamin-kapi",
+  "title": "Melamin kapı — örnek kayıt",
+  "summary": "Örnek yapılandırıcı kaydı. Model adı, renk kartelası ve ölçü aralıkları işletmeden bekleniyor. Sayılar örnektir.",
+  "images": [
+    {
+      "id": "melamin-front",
+      "alt": "Temsilî görsel. Solda oyma konsol, sağda düz ahşap görünümlü kapı kanadı.",
+      "role": "front"
+    }
+  ],
+  "isSample": true,
+  "confirmedByOwner": false,
+  "publishedAt": "2026-11-12",
+  "material": "melamin",
+  "modelCode": null,
+  "colours": [
+    {
+      "id": "ornek-kartela-1",
+      "label": "[SAHİP DOLDURACAK: renk adı]"
+    }
+  ],
+  "sizeRules": {
+    "widthCm": { "min": 60, "max": 100, "step": 1, "standard": [70, 80, 90] },
+    "heightCm": { "min": 190, "max": 220, "step": 1, "standard": [200, 210] },
+    "wallThicknessCm": { "min": 8, "max": 30 },
+    "isSample": true
+  },
+  "openings": ["sol-ice", "sag-ice", "sol-disa", "sag-disa"],
+  "frameOptions": [
+    {
+      "id": "ornek-kasa",
+      "label": "[SAHİP DOLDURACAK: kasa / pervaz]",
+      "requiresWallThickness": false
+    },
+    {
+      "id": "ornek-kasa-duvar",
+      "label": "[SAHİP DOLDURACAK: duvar kalınlığı isteyen kasa]",
+      "requiresWallThickness": true,
+      "widthCm": { "min": 70, "max": 90 }
+    }
+  ],
+  "sale": { "retail": true, "wholesale": true, "wholesaleMinQty": null },
+  "warranty": null
+}
