@@ -184,8 +184,8 @@ html.js-motion [data-reveal] { opacity: 0; }
 }
 
 .menu-dialog {
-  margin: 0;
-  width: 100%;
+  margin: 0 0 0 auto;
+  width: min(100% - 48px, 420px);
   height: 100%;
   max-width: none;
   max-height: none;
@@ -193,8 +193,10 @@ html.js-motion [data-reveal] { opacity: 0; }
   padding: 0;
   background: var(--color-shaving);
   color: var(--color-ink);
+  overflow: auto;
 }
-.menu-dialog::backdrop { background: var(--color-shaving); }
+.menu-dialog::backdrop { background: rgb(33 27 22 / 0.45); }
+body.menu-open { overflow: hidden; }
 
 .roll { animation: roll 280ms var(--ease-plane); }
 @keyframes roll {

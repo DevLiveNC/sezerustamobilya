@@ -49,8 +49,10 @@ test("mobil menü ve yakınlaştırma", async ({ page, viewport }) => {
   test.skip(!viewport || viewport.width > 500, "yalnız dar ekran");
   await page.goto("/");
   await page.getByRole("button", { name: "Menü" }).click();
-  await expect(page.getByRole("dialog", { name: "Menü" })).toBeVisible();
-  await page.getByRole("dialog", { name: "Menü" }).getByRole("link", { name: "Hakkımızda" }).click();
+  const menu = page.getByRole("dialog", { name: "Menü" });
+  await expect(menu).toBeVisible();
+  await menu.getByRole("button", { name: "Atölye" }).click();
+  await menu.getByRole("link", { name: "Hakkımızda" }).click();
   await expect(page).toHaveURL(/hakkimizda/);
   await page.goto("/urun/el-oymasi-sandik-ornek");
   await page.getByRole("button", { name: "Yakından bak" }).click();
@@ -59,6 +61,47 @@ test("mobil menü ve yakınlaştırma", async ({ page, viewport }) => {
   await page.keyboard.press("+");
   await expect(dialog.getByText("Yakınlaştırma %120")).toBeVisible();
 });
+
+for (const width of [360, 390]) {
+  test(`üst çubuk ${width}px taşmaz, menü klavye ile kapanır`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 800 });
+    await page.goto("/");
+    const header = page.locator("header");
+    const overflow = await header.evaluate((element) => element.scrollWidth - element.clientWidth);
+    expect(overflow).toBeLessThanOrEqual(1);
+    const pageOverflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    expect(pageOverflow).toBeLessThanOrEqual(1);
+    const opener = page.getByRole("button", { name: "Menü", exact: true });
+    await expect(opener).toHaveAttribute("aria-controls", "tam-menu");
+    await opener.focus();
+    await page.keyboard.press("Enter");
+    const menu = page.getByRole("dialog", { name: "Menü" });
+    await expect(menu).toBeVisible();
+    await expect(opener).toHaveAttribute("aria-expanded", "true");
+    const focusedInside = await page.evaluate(() => {
+      const dialog = document.getElementById("tam-menu");
+      return Boolean(dialog?.contains(document.activeElement));
+    });
+    expect(focusedInside).toBe(true);
+    await page.keyboard.press("Tab");
+    const stillInside = await page.evaluate(() => {
+      const dialog = document.getElementById("tam-menu");
+      return Boolean(dialog?.contains(document.activeElement));
+    });
+    expect(stillInside).toBe(true);
+    const products = menu.getByRole("button", { name: "Ürünler" });
+    await expect(products).toHaveAttribute("aria-expanded", "true");
+    await products.click();
+    await expect(products).toHaveAttribute("aria-expanded", "false");
+    await page.keyboard.press("Escape");
+    await expect(menu).toBeHidden();
+    await expect(opener).toHaveAttribute("aria-expanded", "false");
+    await opener.click();
+    await expect(menu).toBeVisible();
+    await page.mouse.click(8, 200);
+    await expect(menu).toBeHidden();
+  });
+}
 
 for (const path of ["/", "/urun/el-oymasi-sandik-ornek", "/kapi-yapilandir/melamin-kapi-ornek", "/teklif"]) {
   test(`axe ${path}`, async ({ page }) => {
