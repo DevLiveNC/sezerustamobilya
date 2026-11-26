@@ -7,8 +7,13 @@
   "images": [
     {
       "id": "sandik2-front",
-      "alt": "Temsilî görsel. İkinci sandık dosyası gelene kadar çiçek oymalı sandık karesi duruyor.",
+      "alt": "Temsilî görsel. Ceviz tonlu el oyması sandık, önden; gövdede yıldız motifleri.",
       "role": "front"
+    },
+    {
+      "id": "sandik2-detail",
+      "alt": "Temsilî görsel. Ceviz tonlu el oyması sandığın gövdesindeki yıldız motifi, yakından.",
+      "role": "detail"
     }
   ],
   "isSample": true,
@@ -19,5 +24,5 @@
   "finish": null,
   "dimensions": { "widthCm": null, "heightCm": null, "depthCm": null },
   "availability": "satildi",
-  "carvingDetailImageId": "sandik2-front"
+  "carvingDetailImageId": "sandik2-detail"
 }

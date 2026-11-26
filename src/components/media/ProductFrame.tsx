@@ -28,7 +28,7 @@ export function ProductFrame({
         fill
         sizes={sizes}
         priority={priority}
-        {...(priority ? { fetchPriority: "high" as const } : {})}
+        {...(priority ? { fetchPriority: "high" as const } : { loading: "lazy" as const })}
         className={cn(
           "object-cover",
           position === "left" && "object-left",

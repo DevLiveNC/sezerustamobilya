@@ -15,7 +15,7 @@ export function ProductGallery({ images }: { images: ShownPicture[] }) {
         src={current.src}
         alt={current.alt}
         position={current.position}
-        priority={active === 0}
+        priority={active === 0 && current.role === "front"}
         sizes="(min-width: 1024px) 58vw, 100vw"
         ratio={ratio}
       />

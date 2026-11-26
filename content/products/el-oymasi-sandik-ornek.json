@@ -9,6 +9,16 @@
       "id": "sandik-front",
       "alt": "Temsilî görsel. Kapağı ve gövdesi çiçek oymalı kapaklı sandık.",
       "role": "front"
+    },
+    {
+      "id": "sandik-angle",
+      "alt": "Temsilî görsel. Ceviz tonlu el oyması sandık, üç çeyrek görünüş; kapakta ve yüzde çiçek oyması.",
+      "role": "angle"
+    },
+    {
+      "id": "sandik-detail",
+      "alt": "Temsilî görsel. Ceviz tonlu el oyması sandığın kapağındaki çiçek ve kilit, yakından.",
+      "role": "detail"
     }
   ],
   "isSample": true,
@@ -19,5 +29,5 @@
   "finish": null,
   "dimensions": { "widthCm": null, "heightCm": null, "depthCm": null },
   "availability": "mevcut",
-  "carvingDetailImageId": "sandik-front"
+  "carvingDetailImageId": "sandik-detail"
 }

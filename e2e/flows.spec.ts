@@ -14,9 +14,12 @@ test("kapı ölçüsü hata verir, bağlantı durur, adet birleşir", async ({ p
   await expect(page.getByRole("textbox", { name: /Genişlik/ })).toHaveValue("80");
   await page.getByRole("radio", { name: /renk adı/ }).click();
   await page.getByRole("button", { name: "Teklif listesine ekle" }).click();
+  const list = page.getByRole("dialog", { name: "Teklif listesi" });
+  await expect(list).toContainText("1 adet");
   await page.keyboard.press("Escape");
+  await expect(list).toBeHidden();
   await page.getByRole("button", { name: "Teklif listesine ekle" }).click();
-  await expect(page.getByRole("dialog")).toContainText("2 adet");
+  await expect(list).toContainText("2 adet");
 });
 
 test("teklif WhatsApp bağlantısında ürün adı durur", async ({ page }) => {

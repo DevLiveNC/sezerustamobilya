@@ -135,7 +135,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
                   src={detail.src}
                   alt={detail.alt}
                   position={detail.position}
-                  sizes="(min-width: 1024px) 36vw, 100vw"
+                  sizes="(min-width: 1024px) 560px, 90vw"
                   ratio="1 / 1"
                 />
               ) : (

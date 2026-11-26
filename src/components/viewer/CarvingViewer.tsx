@@ -50,7 +50,7 @@ export function CarvingViewer({ label, children }: { label: string; children: Re
             Kapat
           </button>
         </div>
-        <p className="mb-3 text-sm text-ink-soft">Fotoğraf atölyeden gelene kadar yer tutucu yakınlaşır. Tekerlek veya + / − kullanın.</p>
+        <p className="mb-3 text-sm text-ink-soft">Tekerlek veya + / − ile yakınlaştırın. Bu kare temsilîdir.</p>
         <div
           tabIndex={0}
           className="max-h-[70vh] overflow-auto outline-none"
