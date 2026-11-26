@@ -1,0 +1,1 @@
+import Link from 'next/link'; export default function NotFound(){return <div className="inner wrap page-heading"><span className="eyebrow">404 / SAYFA BULUNAMADI</span><h1>Bu sayfa <em>burada değil.</em></h1><p>Aradığınız sayfa taşınmış veya kaldırılmış olabilir.</p><Link href="/" className="button">Ana sayfaya dön ↗</Link></div>}
