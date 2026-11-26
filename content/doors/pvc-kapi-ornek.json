@@ -4,7 +4,13 @@
   "category": "pvc-kapi",
   "title": "PVC kapı — örnek kayıt",
   "summary": "Örnek yapılandırıcı kaydı. Model adı, renk kartelası ve ölçü aralıkları işletmeden bekleniyor. Sayılar örnektir.",
-  "images": [],
+  "images": [
+    {
+      "id": "pvc-front",
+      "alt": "Temsilî görsel. Solda oyma masa, ortada düz açık renk kapı kanadı.",
+      "role": "front"
+    }
+  ],
   "isSample": true,
   "confirmedByOwner": false,
   "publishedAt": "2026-11-12",

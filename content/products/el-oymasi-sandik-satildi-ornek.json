@@ -4,7 +4,13 @@
   "category": "el-oymasi",
   "title": "El oyması sandık — satıldı örnek kayıt",
   "summary": "Örnek kayıt. Teklif listesinde satıldı işaretinin denenmesi için durur; gerçek bir satış değildir.",
-  "images": [],
+  "images": [
+    {
+      "id": "sandik2-front",
+      "alt": "Temsilî görsel. İkinci sandık dosyası gelene kadar çiçek oymalı sandık karesi duruyor.",
+      "role": "front"
+    }
+  ],
   "isSample": true,
   "confirmedByOwner": false,
   "publishedAt": "2026-11-26",
@@ -12,5 +18,6 @@
   "wood": null,
   "finish": null,
   "dimensions": { "widthCm": null, "heightCm": null, "depthCm": null },
-  "availability": "satildi"
+  "availability": "satildi",
+  "carvingDetailImageId": "sandik2-front"
 }

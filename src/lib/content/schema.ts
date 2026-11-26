@@ -167,6 +167,8 @@ export const manifestImageSchema = z.strictObject({
   ),
   credit: z.enum(["sahip", "liveDevelopment-cekim", "placeholder"]),
   isPlaceholder: z.boolean(),
+  kind: z.exactOptional(z.literal("illustrative")),
+  position: z.exactOptional(z.enum(["left", "center", "right"])),
   slot: z.exactOptional(z.string().min(1)),
 });
 

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Heart } from "lucide-react";
+import { ProductFrame } from "@/components/media/ProductFrame";
 import { photoSlots } from "@/config/slots";
 import { PlaceholderFrame } from "@/components/ui/Marks";
 import { useFavorites } from "@/lib/favorites/store";
@@ -19,7 +20,17 @@ export function ShopCard({ card }: { card: ShopCardModel }) {
     <article className="flex h-full flex-col bg-linen">
       <div className="relative">
         <Link href={card.href}>
-          <PlaceholderFrame slot={photoSlots["product-front"]} label={card.title} ratio="4 / 5" />
+          {card.image ? (
+            <ProductFrame
+              src={card.image.src}
+              alt={card.image.alt}
+              position={card.image.position}
+              sizes="(min-width: 1024px) 25vw, 50vw"
+              ratio="4 / 5"
+            />
+          ) : (
+            <PlaceholderFrame slot={photoSlots["product-front"]} label={card.title} ratio="4 / 5" />
+          )}
         </Link>
         <span className="absolute left-3 top-3 bg-linen px-2 py-1 font-mono text-[10px] tracking-[0.12em] text-ink">{card.badge}</span>
         <button

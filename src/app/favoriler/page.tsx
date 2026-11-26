@@ -10,11 +10,12 @@ export const metadata: Metadata = {
 
 export default async function FavoritesPage() {
   const products = await jsonContentSource.getProducts();
+  const images = await jsonContentSource.getImages();
   return (
     <main className="wrap py-12 md:py-16">
       <h1 className="font-display text-5xl leading-none md:text-7xl">Favoriler</h1>
       <p className="mt-4 max-w-xl text-ink-soft">Kalp işareti bu tarayıcıda saklanır. Fiyat yoktur.</p>
-      <FavoriteList cards={products.map(toShopCard)} />
+      <FavoriteList cards={products.map((product) => toShopCard(product, images))} />
     </main>
   );
 }

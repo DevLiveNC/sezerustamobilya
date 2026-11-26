@@ -65,6 +65,7 @@ async function Listing({ category, searchParams }: { category: CategoryKey; sear
   const tur = first(sp.tur);
   const sirala = first(sp.sirala) === "ad" ? "ad" : "yeni";
   const products = await jsonContentSource.getProductsByCategory(category);
+  const images = await jsonContentSource.getImages();
   const filtered = products.filter((product) => matches(product, durum) && matchesType(product, tur));
   const sorted = [...filtered].sort((a, b) =>
     sirala === "ad" ? a.title.localeCompare(b.title, "tr") : b.publishedAt.localeCompare(a.publishedAt),
@@ -97,7 +98,7 @@ async function Listing({ category, searchParams }: { category: CategoryKey; sear
         <ul className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-4">
           {sorted.map((product) => (
             <li key={product.slug}>
-              <ShopCard card={toShopCard(product)} />
+              <ShopCard card={toShopCard(product, images)} />
             </li>
           ))}
         </ul>

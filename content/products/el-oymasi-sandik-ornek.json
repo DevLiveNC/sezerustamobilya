@@ -7,23 +7,8 @@
   "images": [
     {
       "id": "sandik-front",
-      "alt": "El oyması sandık örnek kaydı için önden fotoğraf yeri",
+      "alt": "Temsilî görsel. Kapağı ve gövdesi çiçek oymalı kapaklı sandık.",
       "role": "front"
-    },
-    {
-      "id": "sandik-angle",
-      "alt": "El oyması sandık örnek kaydı için 45 derece fotoğraf yeri",
-      "role": "angle"
-    },
-    {
-      "id": "sandik-detail",
-      "alt": "El oyması sandık örnek kaydı için oyma detayı fotoğraf yeri",
-      "role": "detail"
-    },
-    {
-      "id": "sandik-scale",
-      "alt": "El oyması sandık örnek kaydı için ölçek fotoğraf yeri",
-      "role": "scale"
     }
   ],
   "isSample": true,
@@ -34,5 +19,5 @@
   "finish": null,
   "dimensions": { "widthCm": null, "heightCm": null, "depthCm": null },
   "availability": "mevcut",
-  "carvingDetailImageId": "sandik-detail"
+  "carvingDetailImageId": "sandik-front"
 }

@@ -8,6 +8,7 @@ import type { PieceType } from "@/lib/domain";
 
 export default async function HomePage() {
   const products = await jsonContentSource.getProducts();
+  const images = await jsonContentSource.getImages();
   const slides = heroImageIds.map((id) => ({ ...siteImage(id), ready: isSiteImageReady(id) }));
   const large = [
     group("kat-oymali-dolap", "dolap", "oymalı dolap / vitrin", "/urunler/el-oymasi?tur=dolap", products),
@@ -34,9 +35,9 @@ export default async function HomePage() {
       large={large}
       small={small}
       tabs={{
-        yeni: cardsForTab(products, "yeni"),
-        "one-cikan": cardsForTab(products, "one-cikan"),
-        kapilar: cardsForTab(products, "kapilar"),
+        yeni: cardsForTab(products, "yeni", images),
+        "one-cikan": cardsForTab(products, "one-cikan", images),
+        kapilar: cardsForTab(products, "kapilar", images),
       }}
     />
   );

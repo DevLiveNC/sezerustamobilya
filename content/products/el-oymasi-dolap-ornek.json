@@ -7,7 +7,7 @@
   "images": [
     {
       "id": "dolap-front",
-      "alt": "El oyması dolap örnek kaydı için önden fotoğraf yeri",
+      "alt": "Temsilî görsel. İki kapaklı, çiçek ve yaprak oymalı yüksek dolap.",
       "role": "front"
     }
   ],
@@ -18,5 +18,6 @@
   "wood": null,
   "finish": null,
   "dimensions": { "widthCm": null, "heightCm": null, "depthCm": null },
-  "availability": "mevcut"
+  "availability": "mevcut",
+  "carvingDetailImageId": "dolap-front"
 }

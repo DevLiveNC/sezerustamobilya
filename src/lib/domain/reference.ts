@@ -25,6 +25,8 @@ export interface ManifestImage {
   focalPoint?: { x: number; y: number };
   credit: ImageCredit;
   isPlaceholder: boolean;
+  kind?: "illustrative";
+  position?: "left" | "center" | "right";
   slot?: string;
 }
 

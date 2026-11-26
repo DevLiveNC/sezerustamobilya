@@ -1,5 +1,5 @@
 {
-  "note": "Atmosphere only. Product cards and product pages must not use these. kind illustrative means the picture is not a photograph of a listed piece.",
+  "note": "Atmosphere pictures. kind illustrative means the picture is not a photograph of a listed piece. Product cards may reuse one until a file in public/images/products/ replaces it. Each use prints Temsilî görsel.",
   "images": [
     {
       "id": "hero-1",

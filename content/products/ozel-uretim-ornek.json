@@ -4,7 +4,18 @@
   "category": "ozel-uretim",
   "title": "Özel üretim — örnek kayıt",
   "summary": "Ölçünüze göre parça. Süre, teslimat bölgesi ve fotoğraf işletmeden bekleniyor.",
-  "images": [],
+  "images": [
+    {
+      "id": "ozel-front",
+      "alt": "Temsilî görsel. Tezgâhta oyma kalemleri, tokmak ve yarım kalmış çiçek oyması.",
+      "role": "front"
+    },
+    {
+      "id": "ozel-detail",
+      "alt": "Temsilî görsel. Oyma ahşabın yanında bakım bezi ve açık bir cila kutusu.",
+      "role": "detail"
+    }
+  ],
   "isSample": true,
   "confirmedByOwner": false,
   "publishedAt": "2026-11-26",

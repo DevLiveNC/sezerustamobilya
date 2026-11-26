@@ -4,14 +4,17 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MessageCircle } from "lucide-react";
 import { categoryByKey } from "@/config/categories";
-import { photoSlots } from "@/config/slots";
 import { publicBusiness, siteUrl, whatsappHref } from "@/config/public";
-import { dimensionText, orderedImages, relatedProducts, statusView } from "@/lib/catalog-view";
+import { dimensionText, relatedProducts, statusView } from "@/lib/catalog-view";
+import { pictureById, shownPictures } from "@/lib/product-pictures";
 import { jsonContentSource } from "@/lib/content/source";
 import { AddPieceButton } from "@/components/quote/AddPieceButton";
 import { CarvingViewer } from "@/components/viewer/CarvingViewer";
 import { BreadcrumbJsonLd, ProductJsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { ProductFrame } from "@/components/media/ProductFrame";
+import { ProductGallery } from "@/components/shop/ProductGallery";
+import { photoSlots } from "@/config/slots";
 import { OwnerTodo, PlaceholderFrame, StatusBadge } from "@/components/ui/Marks";
 import type { Product } from "@/lib/domain/product";
 
@@ -38,6 +41,12 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
   if (!product) notFound();
   const all = await jsonContentSource.getProducts();
   const related = relatedProducts(all, product);
+  const catalogueImages = await jsonContentSource.getImages();
+  const pictures = shownPictures(product, catalogueImages);
+  const detail =
+    product.kind === "carved-piece"
+      ? pictureById(product.carvingDetailImageId, `${product.title} oyma detayı`, catalogueImages)
+      : null;
   const category = categoryByKey(product.category);
   const origin = siteUrl().origin;
   const pageUrl = new URL(`/urun/${product.slug}`, origin).toString();
@@ -63,12 +72,10 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
       />
       <div className="mt-8 grid gap-12 lg:grid-cols-[7fr_5fr]">
         <div className="grid gap-6">
-          {product.images.length === 0 ? (
+          {pictures.length === 0 ? (
             <PlaceholderFrame slot={photoSlots["product-front"]} label={product.title} />
           ) : (
-            orderedImages(product.images).map((image) => (
-              <PlaceholderFrame key={image.id} slot={slotFromRole(image.role)} label={image.alt} />
-            ))
+            <ProductGallery images={pictures} />
           )}
         </div>
         <div>
@@ -117,11 +124,23 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
         <section className="mt-16 border-t border-line pt-10" id="detay">
           <h2 className="font-display text-[36px] leading-none md:text-[48px]">Bıçağın izini yakından görün.</h2>
           <p className="mt-3 max-w-xl text-ink-soft">
-            Oyma fotoğrafı atölyeden gelince burada yakınlaştırılır. Şimdilik yer tutucu duruyor.
+            {detail
+              ? "Bu kare temsilîdir. Atölyenin kendi detay fotoğrafı gelince yerine geçer."
+              : "Oyma fotoğrafı atölyeden gelince burada yakınlaştırılır."}
           </p>
           <div className="mt-6 max-w-xl">
             <CarvingViewer label={`${product.title} oyma detayı`}>
-              <PlaceholderFrame slot={photoSlots["product-detail"]} label="product-detail" />
+              {detail ? (
+                <ProductFrame
+                  src={detail.src}
+                  alt={detail.alt}
+                  position={detail.position}
+                  sizes="(min-width: 1024px) 36vw, 100vw"
+                  ratio="1 / 1"
+                />
+              ) : (
+                <PlaceholderFrame slot={photoSlots["product-detail"]} label="product-detail" />
+              )}
             </CarvingViewer>
           </div>
         </section>
@@ -178,9 +197,3 @@ function pieceLabel(type: string): string {
   return "Diğer";
 }
 
-function slotFromRole(role: string) {
-  if (role === "detail") return photoSlots["product-detail"];
-  if (role === "angle") return photoSlots["product-angle"];
-  if (role === "scale") return photoSlots["product-scale"];
-  return photoSlots["product-front"];
-}
