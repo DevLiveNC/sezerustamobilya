@@ -1,13 +1,11 @@
+import { HomeView } from "@/components/home/HomeView";
+import { featuredCarved } from "@/lib/catalog-view";
 import { jsonContentSource } from "@/lib/content/source";
-import { publicBusiness } from "@/config/public";
 
 export default async function HomePage() {
   const products = await jsonContentSource.getProducts();
-  return (
-    <main>
-      <h1>{publicBusiness.name}</h1>
-      <p>{publicBusiness.tagline}</p>
-      <p>{products.length} örnek kayıt</p>
-    </main>
-  );
+  const pieces = featuredCarved(products)
+    .filter((piece) => piece.availability !== "satildi")
+    .slice(0, 3);
+  return <HomeView pieces={pieces} />;
 }
