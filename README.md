@@ -17,6 +17,8 @@ npm run test:e2e
 
 `scripts/ingest-images.ts` reads `incoming/`, re-encodes to AVIF/WebP and drops EXIF (including GPS). It does not run in CI.
 
+The four OFL families (Instrument Serif, Young Serif, Hanken Grotesk, IBM Plex Mono) are subset for Turkish and loaded with `next/font/local` from `src/fonts/`. The licence is `src/fonts/OFL.txt`.
+
 ## Content
 
 JSON under `content/` is validated with Zod at build time (`src/lib/content`). `JsonContentSource` is the current source. A later `CmsContentSource` should implement the same `ContentSource` interface (`getProducts`, `getProduct`, `getReferences`, `getFaq`, `getImages`).
@@ -30,3 +32,7 @@ See `.env.example`. Keys only, empty values. `PREVIEW_MODE=false` turns the prev
 Email is not connected. `QUOTE_EMAIL_TO` and `RESEND_API_KEY` are reserved.
 
 The in-memory rate limit used by the quote action is per server instance. On Vercel that is not a shared store; production needs Vercel KV or Upstash behind the same interface.
+
+## Illustrative images
+
+`public/images/site/` holds the eleven atmosphere pictures (hero, category cards, guide cards). `content/images/site.json` marks each `kind: "illustrative"`. They are not photographs of listed pieces. Product cards and product pages keep the “FOTOĞRAF ATÖLYEDEN GELECEK” placeholder.

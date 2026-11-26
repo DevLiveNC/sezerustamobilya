@@ -7,6 +7,8 @@ import type { DoorModel, DoorOpening } from "@/lib/domain";
 import { openingLabel, validateDoorConfig, type DoorDraft } from "@/lib/doors/engine";
 import { parseDoorQuery, writeDoorQuery } from "@/lib/doors/url";
 import { DoorElevation } from "@/components/doors/DoorElevation";
+import { track } from "@/lib/analytics";
+import { useQuote } from "@/lib/quote/store";
 import { OwnerTodo } from "@/components/ui/Marks";
 
 const OPENINGS: { id: DoorOpening; label: string }[] = [
@@ -26,6 +28,7 @@ export function DoorConfigurator({ model }: { model: DoorModel }) {
   const result = useMemo(() => validateDoorConfig(model, draft), [model, draft]);
   const svgRef = useRef<SVGSVGElement | null>(null);
   const [status, setStatus] = useState("");
+  const addDoorLine = useQuote((state) => state.addDoorLine);
   const [qty, setQty] = useState(1);
   const [widthText, setWidthText] = useState<string | null>(null);
   const [heightText, setHeightText] = useState<string | null>(null);
@@ -53,6 +56,7 @@ export function DoorConfigurator({ model }: { model: DoorModel }) {
   async function copyLink() {
     const url = window.location.href;
     await navigator.clipboard.writeText(url);
+    track("door_config_share");
     setStatus("Bağlantı kopyalandı. Aynı ölçü bu adreste durur.");
   }
 
@@ -284,11 +288,12 @@ export function DoorConfigurator({ model }: { model: DoorModel }) {
               type="button"
               className="btn btn-light"
               onClick={() => {
-                if (!result.valid) {
+                if (!result.valid || !result.normalized) {
                   setStatus(result.errors[0]?.message ?? "Ölçüyü düzeltin.");
                   return;
                 }
-                setStatus(`Ölçü doğrulandı, ${qty} adet. Teklif listesine ekleme sıradaki adımda bağlanacak.`);
+                addDoorLine({ slug: model.slug, title: model.title, config: result.normalized, qty });
+                setStatus(`Listeye eklendi, ${qty} adet.`);
               }}
             >
               <Plus className="size-4" aria-hidden /> Teklif listesine ekle
@@ -341,6 +346,7 @@ function NumberField({
           className="bg-transparent text-center font-mono text-xl outline-none"
           inputMode="decimal"
           value={value}
+          aria-label={label}
           aria-invalid={Boolean(error)}
           onChange={(event) => onChange(event.target.value)}
           onBlur={() => {

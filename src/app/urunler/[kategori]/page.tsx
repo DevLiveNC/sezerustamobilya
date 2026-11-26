@@ -6,10 +6,10 @@ import { categories, categoryByKey } from "@/config/categories";
 import type { CategoryKey } from "@/lib/domain/brand";
 import { isCategoryKey } from "@/lib/domain/brand";
 import { jsonContentSource } from "@/lib/content/source";
-import { dimensionText, statusView } from "@/lib/catalog-view";
-import { photoSlots } from "@/config/slots";
+import { statusView } from "@/lib/catalog-view";
+import { toShopCard } from "@/lib/shop";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
-import { OwnerTodo, PlaceholderFrame, StatusBadge } from "@/components/ui/Marks";
+import { ShopCard } from "@/components/shop/ShopCard";
 import type { Product } from "@/lib/domain/product";
 
 type Params = { kategori: string };
@@ -62,9 +62,10 @@ export default async function CategoryPage({
 async function Listing({ category, searchParams }: { category: CategoryKey; searchParams: Promise<Search> }) {
   const sp = await searchParams;
   const durum = first(sp.durum);
+  const tur = first(sp.tur);
   const sirala = first(sp.sirala) === "ad" ? "ad" : "yeni";
   const products = await jsonContentSource.getProductsByCategory(category);
-  const filtered = products.filter((product) => matches(product, durum));
+  const filtered = products.filter((product) => matches(product, durum) && matchesType(product, tur));
   const sorted = [...filtered].sort((a, b) =>
     sirala === "ad" ? a.title.localeCompare(b.title, "tr") : b.publishedAt.localeCompare(a.publishedAt),
   );
@@ -93,46 +94,15 @@ async function Listing({ category, searchParams }: { category: CategoryKey; sear
           Bu filtrede parça yok. Filtreyi temizleyin ya da WhatsApp’tan sorun.
         </p>
       ) : (
-        <ul className="mt-10 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-4">
           {sorted.map((product) => (
             <li key={product.slug}>
-              <ProductCard product={product} />
+              <ShopCard card={toShopCard(product)} />
             </li>
           ))}
         </ul>
       )}
     </>
-  );
-}
-
-function ProductCard({ product }: { product: Product }) {
-  const hrefTo = product.kind === "door-model" ? `/kapi-yapilandir/${product.slug}` : `/urun/${product.slug}`;
-  return (
-    <article>
-      <Link href={hrefTo}>
-        <PlaceholderFrame slot={photoSlots["product-front"]} label={product.title} />
-      </Link>
-      <div className="mt-4 border-t border-ink pt-3">
-        <div className="flex items-center justify-between gap-2">
-          <span className="font-mono text-[11px] tracking-[0.08em] text-ink-soft">
-            {product.isSample ? "ÖRNEK KAYIT" : "KAYIT"}
-          </span>
-          {product.kind === "carved-piece" ? <StatusBadge status={statusView(product).key} /> : null}
-        </div>
-        <h2 className="mt-2 font-serif text-[22px] leading-tight">
-          <Link href={hrefTo}>{product.title}</Link>
-        </h2>
-        {product.kind === "carved-piece" ? (
-          <p className="mt-2 text-sm text-ink-soft">{dimensionText(product.dimensions)}</p>
-        ) : null}
-        {product.kind === "door-model" ? (
-          <p className="mt-2 text-sm text-ink-soft">
-            Model: {product.modelCode ?? <OwnerTodo>model adı</OwnerTodo>}
-          </p>
-        ) : null}
-        <p className="mt-2 text-sm">Fiyat için teklif alın</p>
-      </div>
-    </article>
   );
 }
 
@@ -159,6 +129,11 @@ function href(category: CategoryKey, sirala: string, durum?: string): string {
 function matches(product: Product, durum: string | undefined): boolean {
   if (!durum || product.kind !== "carved-piece") return true;
   return statusView(product).key === durum;
+}
+
+function matchesType(product: Product, tur: string | undefined): boolean {
+  if (!tur || product.kind !== "carved-piece") return true;
+  return product.pieceType === tur;
 }
 
 function first(value: string | string[] | undefined): string | undefined {

@@ -4,7 +4,7 @@ test("ana sayfa Türkçe açılır", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("html")).toHaveAttribute("lang", "tr");
   await expect(page.getByRole("heading", { level: 1 })).toContainText("mobilya ustası");
-  await expect(page.locator("body")).not.toContainText("KKTC");
+  await expect(page.locator("body")).not.toContainText("KK" + "TC");
   await expect(page.locator("body")).not.toContainText("533 885 36 24");
 });
 

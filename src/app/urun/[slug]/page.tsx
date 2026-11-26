@@ -8,6 +8,9 @@ import { photoSlots } from "@/config/slots";
 import { publicBusiness, siteUrl, whatsappHref } from "@/config/public";
 import { dimensionText, orderedImages, relatedProducts, statusView } from "@/lib/catalog-view";
 import { jsonContentSource } from "@/lib/content/source";
+import { AddPieceButton } from "@/components/quote/AddPieceButton";
+import { CarvingViewer } from "@/components/viewer/CarvingViewer";
+import { BreadcrumbJsonLd, ProductJsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { OwnerTodo, PlaceholderFrame, StatusBadge } from "@/components/ui/Marks";
 import type { Product } from "@/lib/domain/product";
@@ -36,11 +39,20 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
   const all = await jsonContentSource.getProducts();
   const related = relatedProducts(all, product);
   const category = categoryByKey(product.category);
-  const pageUrl = new URL(`/urun/${product.slug}`, siteUrl()).toString();
+  const origin = siteUrl().origin;
+  const pageUrl = new URL(`/urun/${product.slug}`, origin).toString();
   const message = `Merhaba, “${product.title}” için yazıyorum. ${pageUrl}`;
+  const crumbs = [
+    { name: "Ana sayfa", url: origin },
+    { name: "Ürünler", url: new URL("/urunler", origin).toString() },
+    { name: category?.title ?? "Ürün", url: new URL(category?.href ?? "/urunler", origin).toString() },
+    { name: product.title, url: pageUrl },
+  ];
 
   return (
     <main className="wrap py-10 md:py-16">
+      <ProductJsonLd name={product.title} description={product.summary} url={pageUrl} />
+      <BreadcrumbJsonLd items={crumbs} />
       <Breadcrumbs
         items={[
           { href: "/", label: "ANA SAYFA" },
@@ -87,9 +99,12 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
             </ol>
           ) : null}
           <div className="mt-8 flex flex-col gap-3">
-            <Link className="btn btn-primary" href={`/teklif?parca=${product.slug}`}>
-              Teklif listesine ekle
-            </Link>
+            <AddPieceButton
+              slug={product.slug}
+              title={product.title}
+              custom={product.kind === "custom-work"}
+              {...(product.kind === "carved-piece" ? { availability: product.availability } : {})}
+            />
             <a className="btn btn-ghost" href={whatsappHref(message)}>
               <MessageCircle className="h-[18px] w-[18px]" strokeWidth={1.5} aria-hidden="true" />
               WhatsApp · {publicBusiness.phoneDisplay}
@@ -105,7 +120,9 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
             Oyma fotoğrafı atölyeden gelince burada yakınlaştırılır. Şimdilik yer tutucu duruyor.
           </p>
           <div className="mt-6 max-w-xl">
-            <PlaceholderFrame slot={photoSlots["product-detail"]} label="product-detail" />
+            <CarvingViewer label={`${product.title} oyma detayı`}>
+              <PlaceholderFrame slot={photoSlots["product-detail"]} label="product-detail" />
+            </CarvingViewer>
           </div>
         </section>
       ) : null}

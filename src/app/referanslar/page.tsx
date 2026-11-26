@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
-import { photoSlots } from "@/config/slots";
+import { Suspense } from "react";
 import { jsonContentSource } from "@/lib/content/source";
-import { PlaceholderFrame, SectionHeader } from "@/components/ui/Marks";
+import { canShowBeforeAfter } from "@/lib/content/load";
+import { ReferenceBoard } from "@/components/gallery/ReferenceBoard";
+import { BeforeAfter } from "@/components/gallery/BeforeAfter";
+import { SectionHeader } from "@/components/ui/Marks";
 
 export const metadata: Metadata = {
   title: "Referanslar",
@@ -9,7 +12,11 @@ export const metadata: Metadata = {
 };
 
 export default async function ReferencesPage() {
-  const references = await jsonContentSource.getReferences();
+  const [references, images] = await Promise.all([
+    jsonContentSource.getReferences(),
+    jsonContentSource.getImages(),
+  ]);
+  const comparable = references.filter((reference) => canShowBeforeAfter(reference, images));
   return (
     <main className="wrap py-12 md:py-20">
       <SectionHeader index="REFERANSLAR" end="ONAYLI KAYITLAR" />
@@ -17,24 +24,28 @@ export default async function ReferencesPage() {
       <p className="mt-4 max-w-xl text-ink-soft">
         Yalnız müşterisi onaylayan işler görünür. Önce / sonra kaydırıcısı iki gerçek fotoğraf gelince açılır.
       </p>
+      {comparable.map((reference) => (
+        <div key={reference.id} className="mt-8 max-w-xl">
+          <BeforeAfter
+            beforeLabel={reference.beforeAfter?.before.alt ?? "Önce"}
+            afterLabel={reference.beforeAfter?.after.alt ?? "Sonra"}
+          />
+        </div>
+      ))}
       {references.length === 0 ? (
         <p className="mt-10">Gösterilecek onaylı referans yok.</p>
       ) : (
-        <ul className="mt-10 grid gap-8 sm:grid-cols-2">
-          {references.map((reference) => (
-            <li key={reference.id} className="border border-line bg-linen">
-              <PlaceholderFrame slot={photoSlots["reference-after"]} label={reference.title} ratio="4 / 3" />
-              <div className="p-4">
-                <h2 className="font-serif text-2xl">{reference.title}</h2>
-                <p className="mt-1 text-sm text-ink-soft">
-                  {reference.location ?? "Konum işletmeden bekleniyor"}
-                  {reference.year ? ` · ${reference.year}` : ""}
-                  {reference.isSample ? " · örnek kayıt" : ""}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ul>
+        <Suspense fallback={<p className="mt-10">Kayıtlar yükleniyor.</p>}>
+          <ReferenceBoard
+            items={references.map((reference) => ({
+              id: reference.id,
+              title: reference.title,
+              category: reference.productSlugs.some((slug) => slug.startsWith("el-oymasi")) ? "El oyması" : "Atölye",
+              year: reference.year ? String(reference.year) : null,
+              meta: `${reference.location ?? "Konum işletmeden bekleniyor"}${reference.year ? ` · ${reference.year}` : ""}${reference.isSample ? " · örnek kayıt" : ""}`,
+            }))}
+          />
+        </Suspense>
       )}
     </main>
   );

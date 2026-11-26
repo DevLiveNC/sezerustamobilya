@@ -1,150 +1,227 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useId, useRef, useState } from "react";
-import { ChevronDown, List } from "lucide-react";
-import { categories } from "@/config/categories";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { Heart, Menu, Search, ShoppingBag, X } from "lucide-react";
 import { Wordmark } from "@/components/layout/Wordmark";
-import { cn } from "@/lib/cn";
+import { QuoteDrawer } from "@/components/quote/QuoteDrawer";
+import { useFavorites } from "@/lib/favorites/store";
+import { quoteCount, useQuote } from "@/lib/quote/store";
 
-const links = [
-  { href: "/hakkimizda", label: "Atölye" },
-  { href: "/referanslar", label: "Referanslar" },
-  { href: "/olcu-rehberi", label: "Ölçü Rehberi" },
-  { href: "/iletisim", label: "İletişim" },
+export interface SearchHit {
+  title: string;
+  href: string;
+  group: string;
+}
+
+const nav = [
+  {
+    label: "El oyması",
+    href: "/urunler/el-oymasi",
+    children: [
+      { label: "Tümü", href: "/urunler/el-oymasi" },
+      { label: "Sandık", href: "/urunler/el-oymasi?tur=sandik" },
+      { label: "Dolap", href: "/urunler/el-oymasi?tur=dolap" },
+      { label: "Ayna çerçevesi", href: "/urunler/el-oymasi?tur=ayna-cercevesi" },
+    ],
+  },
+  {
+    label: "Melamin kapı",
+    href: "/urunler/melamin-kapi",
+    children: [
+      { label: "Modeller", href: "/urunler/melamin-kapi" },
+      { label: "Yapılandırıcı", href: "/kapi-yapilandir/melamin-kapi-ornek" },
+    ],
+  },
+  {
+    label: "PVC kapı",
+    href: "/urunler/pvc-kapi",
+    children: [
+      { label: "Modeller", href: "/urunler/pvc-kapi" },
+      { label: "Yapılandırıcı", href: "/kapi-yapilandir/pvc-kapi-ornek" },
+    ],
+  },
+  {
+    label: "Kapı yapılandırıcı",
+    href: "/kapi-yapilandir/melamin-kapi-ornek",
+    children: [
+      { label: "Melamin", href: "/kapi-yapilandir/melamin-kapi-ornek" },
+      { label: "PVC", href: "/kapi-yapilandir/pvc-kapi-ornek" },
+    ],
+  },
+  {
+    label: "Atölye",
+    href: "/hakkimizda",
+    children: [
+      { label: "Hakkımızda", href: "/hakkimizda" },
+      { label: "Referanslar", href: "/referanslar" },
+      { label: "Ölçü rehberi", href: "/olcu-rehberi" },
+      { label: "Sık sorulanlar", href: "/sss" },
+    ],
+  },
+  {
+    label: "İletişim",
+    href: "/iletisim",
+    children: [
+      { label: "Atölye", href: "/iletisim" },
+      { label: "Teklif", href: "/teklif" },
+    ],
+  },
 ];
 
-export function Header() {
-  const pathname = usePathname();
-  const [openPath, setOpenPath] = useState<string | null>(null);
-  const open = openPath === pathname;
+export function Header({ hits }: { hits: SearchHit[] }) {
+  const [openLabel, setOpenLabel] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
-  const menuId = useId();
-  const dialogRef = useRef<HTMLDialogElement>(null);
-  const productsRef = useRef<HTMLDivElement>(null);
-  const menuWasOpen = useRef(false);
+  const [query, setQuery] = useState("");
+  const [searchOpen, setSearchOpen] = useState(false);
+  const menuRef = useRef<HTMLDialogElement>(null);
+  const searchRef = useRef<HTMLDialogElement>(null);
+  const navRef = useRef<HTMLElement>(null);
+  const ready = useQuote((state) => state.ready);
+  const count = useQuote((state) => (state.ready ? quoteCount(state.lines) : 0));
+  const setDrawer = useQuote((state) => state.setDrawer);
+  const saved = useFavorites((state) => (state.ready ? state.slugs.length : 0));
+  const searchId = useId();
+  const results = useMemo(() => {
+    const needle = query.trim().toLocaleLowerCase("tr");
+    if (needle.length < 2) return [];
+    return hits.filter((hit) => hit.title.toLocaleLowerCase("tr").includes(needle)).slice(0, 8);
+  }, [hits, query]);
 
   useEffect(() => {
     const onPointer = (event: PointerEvent) => {
-      if (!productsRef.current?.contains(event.target as Node)) setOpenPath(null);
-    };
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpenPath(null);
+      if (!navRef.current?.contains(event.target as Node)) setOpenLabel(null);
     };
     window.addEventListener("pointerdown", onPointer);
-    window.addEventListener("keydown", onKey);
-    return () => {
-      window.removeEventListener("pointerdown", onPointer);
-      window.removeEventListener("keydown", onKey);
-    };
+    return () => window.removeEventListener("pointerdown", onPointer);
   }, []);
 
-  function showMenu() {
-    if (menuWasOpen.current) return;
-    menuWasOpen.current = true;
-    dialogRef.current?.showModal();
-    setMenuOpen(true);
-    void import("@/lib/motion/smooth-scroll").then((mod) => mod.setOverlay(true));
-  }
-
-  function hideMenu() {
-    dialogRef.current?.close();
-  }
-
-  function onDialogClose() {
-    setMenuOpen(false);
-    if (!menuWasOpen.current) return;
-    menuWasOpen.current = false;
-    void import("@/lib/motion/smooth-scroll").then((mod) => mod.setOverlay(false));
+  function showSearch() {
+    setSearchOpen(true);
+    searchRef.current?.showModal();
   }
 
   return (
-    <header className="sticky top-0 z-10 border-b border-line bg-shaving">
-      <div className="wrap flex h-16 items-center gap-4 md:h-[84px] md:gap-8">
+    <header className="sticky top-0 z-30 border-b border-line bg-shaving">
+      <div className="wrap flex h-16 items-center gap-3 md:h-[84px]">
         <Wordmark />
-        <nav className="ml-auto hidden items-center gap-7 text-[15px] font-medium lg:flex" aria-label="Ana menü">
-          <div className="relative" ref={productsRef}>
-            <button
-              type="button"
-              className="inline-flex min-h-11 items-center gap-1.5"
-              aria-expanded={open}
-              aria-controls={menuId}
-              onClick={() => setOpenPath(open ? null : pathname)}
-            >
-              Ürünler
-              <ChevronDown className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden="true" />
-            </button>
-            {open ? (
-              <div
-                id={menuId}
-                className="absolute left-0 top-full z-20 mt-3 w-[420px] border border-line bg-linen p-2 shadow-[var(--shadow-lift)]"
-              >
-                {categories.map((category) => (
-                  <Link
-                    key={category.key}
-                    href={category.href}
-                    className="block px-3 py-3 hover:bg-shaving"
-                    onClick={() => setOpenPath(null)}
-                  >
-                    <span className="font-mono text-[11px] tracking-[0.12em] text-ink-soft">{category.eyebrow}</span>
-                    <span className="mt-1 block font-display text-[28px] leading-none">{category.title}</span>
-                    <span className="mt-1 block text-sm text-ink-soft">{category.summary}</span>
-                  </Link>
-                ))}
+        <nav ref={navRef} className="ml-6 hidden items-center gap-1 xl:flex" aria-label="Ana menü">
+          {nav.map((item) => {
+            const open = openLabel === item.label;
+            return (
+              <div key={item.label} className="relative">
+                <button
+                  type="button"
+                  className="inline-flex min-h-11 items-center px-2 text-sm font-medium"
+                  aria-expanded={open}
+                  onClick={() => setOpenLabel(open ? null : item.label)}
+                >
+                  {item.label}
+                </button>
+                {open ? (
+                  <div className="absolute left-0 top-full z-20 min-w-52 border border-line bg-linen p-2 shadow-lift">
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        className="block min-h-11 px-3 py-2 text-sm"
+                        onClick={() => setOpenLabel(null)}
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                ) : null}
               </div>
-            ) : null}
-          </div>
-          {links.map((link) => (
-            <Link key={link.href} href={link.href} className="inline-flex min-h-11 items-center" aria-current={pathname === link.href ? "page" : undefined}>
-              {link.label}
-            </Link>
-          ))}
+            );
+          })}
         </nav>
-        <div className="ml-auto flex items-center gap-3 lg:ml-0">
-          <Link href="/teklif" className="inline-flex min-h-11 items-center gap-2 text-[15px] font-medium">
-            <List className="h-[18px] w-[18px]" strokeWidth={1.5} aria-hidden="true" />
-            <span className="hidden sm:inline">Teklif listesi</span>
-            <span className="rounded-full bg-ink px-1.5 py-0.5 font-mono text-[11px] text-shaving">0</span>
-          </Link>
-          <Link href="/teklif" className="btn btn-primary btn-sm hidden md:inline-flex">
-            Teklif Al
+        <div className="ml-auto flex items-center gap-1">
+          <button type="button" className="grid h-11 w-11 place-items-center" aria-label="Ara" onClick={showSearch}>
+            <Search className="h-[18px] w-[18px]" strokeWidth={1.5} aria-hidden="true" />
+          </button>
+          <Link href="/favoriler" className="relative grid h-11 w-11 place-items-center" aria-label={`Favoriler, ${saved}`}>
+            <Heart className="h-[18px] w-[18px]" strokeWidth={1.5} aria-hidden="true" />
           </Link>
           <button
             type="button"
-            className="inline-flex h-11 w-11 items-center justify-center lg:hidden"
+            className="relative grid h-11 w-11 place-items-center"
+            aria-label={`Teklif listesi, ${count} kalem`}
+            onClick={() => setDrawer(true)}
+          >
+            <ShoppingBag className="h-[18px] w-[18px]" strokeWidth={1.5} aria-hidden="true" />
+            <span key={ready ? count : "yok"} className="roll absolute -right-0.5 -top-0.5 grid min-h-5 min-w-5 place-items-center rounded-full bg-ink px-1 font-mono text-[10px] text-shaving" aria-live="polite">
+              {count}
+            </span>
+          </button>
+          <Link href="/teklif" className="btn btn-primary btn-sm ml-1 hidden sm:inline-flex">
+            Teklif al
+          </Link>
+          <button
+            type="button"
+            className="grid h-11 w-11 place-items-center xl:hidden"
             aria-expanded={menuOpen}
             aria-controls="tam-menu"
-            onClick={showMenu}
+            onClick={() => {
+              setMenuOpen(true);
+              menuRef.current?.showModal();
+            }}
           >
-            <span className="sr-only">Menüyü aç</span>
-            <span className="block h-3 w-[22px] border-y-[1.5px] border-ink" />
+            <Menu className="h-5 w-5" aria-hidden="true" />
+            <span className="sr-only">Menü</span>
           </button>
         </div>
       </div>
-      <dialog ref={dialogRef} id="tam-menu" className="menu-dialog" onClose={onDialogClose}>
-        <div className="flex h-16 items-center justify-between px-5">
+      <dialog
+        id="tam-menu"
+        ref={menuRef}
+        className="menu-dialog"
+        aria-label="Menü"
+        onClose={() => setMenuOpen(false)}
+      >
+        <div className="flex items-center justify-between border-b border-line px-5 py-4">
           <Wordmark />
-          <button type="button" className="btn btn-ghost btn-sm" onClick={hideMenu}>
-            Kapat
+          <button type="button" className="grid h-11 w-11 place-items-center" onClick={() => menuRef.current?.close()} aria-label="Menüyü kapat">
+            <X className="h-5 w-5" />
           </button>
         </div>
-        <nav className="flex flex-col px-5 pb-28" aria-label="Mobil menü">
-          {categories.map((category) => (
-            <Link key={category.key} href={category.href} onClick={hideMenu} className="border-b border-line py-4 font-display text-[36px] leading-none">
-              {category.title}
-            </Link>
+        <nav className="grid gap-1 px-3 py-4" aria-label="Mobil menü">
+          {nav.map((item) => (
+            <div key={item.label} className="border-b border-line py-2">
+              <p className="px-2 font-mono text-[11px] tracking-[0.12em] text-ink-soft">{item.label.toLocaleUpperCase("tr")}</p>
+              {item.children.map((child) => (
+                <Link key={child.href + child.label} href={child.href} className="block min-h-11 px-2 py-2 text-lg" onClick={() => menuRef.current?.close()}>
+                  {child.label}
+                </Link>
+              ))}
+            </div>
           ))}
-          {links.map((link) => (
-            <Link key={link.href} href={link.href} onClick={hideMenu} className={cn("border-b border-line py-4 text-lg")}>
-              {link.label}
-            </Link>
-          ))}
-          <Link href="/sss" onClick={hideMenu} className="border-b border-line py-4 text-lg">
-            Sık sorulanlar
-          </Link>
-        </nav>
+          </nav>
       </dialog>
+      <dialog ref={searchRef} className="w-[min(100%,560px)] border border-line bg-linen p-5" aria-labelledby={searchId} onClose={() => setSearchOpen(false)}>
+        <h2 id={searchId} className="font-serif text-2xl">
+          Ara
+        </h2>
+        <input
+          className="mt-4 h-12 w-full border border-ink-soft bg-shaving px-3"
+          value={query}
+          placeholder="Parça veya kapı adı"
+          onChange={(event) => setQuery(event.target.value)}
+          autoFocus={searchOpen}
+        />
+        <ul className="mt-3">
+          {results.map((hit) => (
+            <li key={hit.href}>
+              <Link href={hit.href} className="block min-h-11 py-2" onClick={() => searchRef.current?.close()}>
+                <span className="block">{hit.title}</span>
+                <span className="text-sm text-ink-soft">{hit.group}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        {query.trim().length >= 2 && results.length === 0 ? <p className="mt-3 text-sm text-ink-soft">Bu adla kayıt yok.</p> : null}
+      </dialog>
+      <QuoteDrawer />
     </header>
   );
 }

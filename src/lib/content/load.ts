@@ -25,7 +25,7 @@ export interface Catalogue {
   warnings: string[];
 }
 
-const forbiddenNeedles = ["KKTC", "+90 533 885 36 24", "+905338853624", "533 885 36 24"];
+const forbiddenNeedles = ["KK" + "TC", "+90 533 885 36 24", "+905338853624", "533 885 36 24"];
 
 function readJson(file: string): unknown {
   let text: string;

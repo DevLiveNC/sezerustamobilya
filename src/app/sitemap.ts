@@ -18,6 +18,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/sss",
     "/gizlilik",
     "/kisisel-veriler",
+    "/favoriler",
   ];
   return [
     ...staticPaths.map((path) => ({ url: `${origin}${path}` })),

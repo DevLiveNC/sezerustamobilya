@@ -91,8 +91,8 @@ body {
   animation: page-fade 280ms var(--ease-plane);
 }
 @keyframes page-fade {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from { transform: translateY(8px); }
+  to { transform: none; }
 }
 
 .band-oak {
@@ -190,6 +190,15 @@ html.js-motion [data-reveal] { opacity: 0; }
   color: var(--color-ink);
 }
 .menu-dialog::backdrop { background: var(--color-shaving); }
+
+.roll { animation: roll 280ms var(--ease-plane); }
+@keyframes roll {
+  from { transform: translateY(-40%); }
+  to { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .roll { animation: none; }
+}
 
 .sr-only {
   position: absolute;
