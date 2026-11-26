@@ -37,7 +37,7 @@ export function ProductFrame({
         )}
       />
       {caption ? (
-        <figcaption className="pointer-events-none absolute bottom-2 right-2 bg-linen/85 px-1.5 py-0.5 font-mono text-[10px] tracking-[0.08em] text-walnut">
+        <figcaption className="pointer-events-none absolute bottom-2 right-2 bg-linen px-2 py-1 font-mono text-[10px] tracking-[0.08em] text-ink">
           Temsilî görsel
         </figcaption>
       ) : null}

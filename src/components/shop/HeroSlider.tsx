@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Pause, Play } from "lucide-react";
 import { AtmosphereVisual } from "@/components/media/AtmosphereVisual";
 import type { SiteImage } from "@/lib/site-images";
 
@@ -72,23 +73,39 @@ export function HeroSlider({ slides }: { slides: readonly HeroSlide[] }) {
               className="h-full w-full"
               priority={slideIndex === 0}
               sizes="100vw"
+              captionClassName="bottom-3 left-3 bg-linen px-2 py-1 text-ink md:bottom-4 md:left-auto md:right-4"
             />
           </div>
         ) : null,
       )}
-      <div className="absolute right-4 top-4 z-10 flex items-center gap-2">
-        {slides.map((slide, slideIndex) => (
-          <button
-            key={slide.id}
-            type="button"
-            aria-label={`Slayt ${slideIndex + 1}`}
-            aria-current={slideIndex === index ? "true" : undefined}
-            className={`h-11 w-11 rounded-full border border-shaving ${slideIndex === index ? "bg-shaving" : "bg-ink/30"}`}
-            onClick={() => setIndex(slideIndex)}
-          />
-        ))}
-        <button type="button" className="min-h-11 bg-ink/70 px-3 text-xs font-medium text-shaving" onClick={() => setPaused((value) => !value)}>
-          {paused ? "Sürdür" : "Durdur"}
+      <div className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-end pr-1 md:justify-center md:pr-0">
+        {slides.map((slide, slideIndex) => {
+          const active = slideIndex === index;
+          return (
+            <button
+              key={slide.id}
+              type="button"
+              aria-label={`Slayt ${slideIndex + 1}`}
+              aria-current={active ? "true" : undefined}
+              className="inline-flex items-center justify-center p-[18px]"
+              onClick={() => setIndex(slideIndex)}
+            >
+              <span
+                className={`block h-2 w-2 rounded-full ${active ? "bg-ink ring-2 ring-linen" : "bg-linen ring-1 ring-ink"}`}
+              />
+            </button>
+          );
+        })}
+        <button
+          type="button"
+          className="inline-flex h-11 w-11 items-center justify-center"
+          aria-label={paused ? "Sürdür" : "Durdur"}
+          aria-pressed={paused}
+          onClick={() => setPaused((value) => !value)}
+        >
+          <span className="grid h-7 w-7 place-items-center rounded-full bg-ink text-linen">
+            {paused ? <Play className="h-3 w-3 fill-current" aria-hidden="true" /> : <Pause className="h-3 w-3 fill-current" aria-hidden="true" />}
+          </span>
         </button>
       </div>
     </div>

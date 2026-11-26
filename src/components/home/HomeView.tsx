@@ -31,8 +31,8 @@ export function HomeView({
     <main>
       <section className="relative h-[78vh] min-h-[560px] max-h-[820px] bg-oak">
         <HeroSlider slides={slides} />
-        <div className="relative z-10 flex h-full items-end md:items-center">
-          <div className="w-full bg-shaving/92 px-5 py-8 md:w-[min(46%,640px)] md:bg-shaving/84 md:px-16 md:py-14">
+        <div className="pointer-events-none relative z-10 flex h-full items-end pb-14 md:items-center md:pb-0">
+          <div className="pointer-events-auto w-full bg-shaving/92 px-5 py-8 md:w-[min(46%,640px)] md:bg-shaving/84 md:px-16 md:py-14">
             <p className="font-mono text-[12px] tracking-[0.14em] text-walnut">GAZİMAĞUSA · EL OYMASI</p>
             <h1 className="mt-4 max-w-xl font-display text-5xl leading-[0.95] tracking-[-0.03em] md:text-7xl">
               El oyma sanatı ve mobilya ustası.

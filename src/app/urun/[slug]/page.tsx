@@ -14,6 +14,8 @@ import { BreadcrumbJsonLd, ProductJsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { ProductFrame } from "@/components/media/ProductFrame";
 import { ProductGallery } from "@/components/shop/ProductGallery";
+import { ShopCard } from "@/components/shop/ShopCard";
+import { toShopCard } from "@/lib/shop";
 import { photoSlots } from "@/config/slots";
 import { OwnerTodo, PlaceholderFrame, StatusBadge } from "@/components/ui/Marks";
 import type { Product } from "@/lib/domain/product";
@@ -148,12 +150,10 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
       {related.length > 0 ? (
         <section className="mt-16">
           <h2 className="font-mono text-[12px] tracking-[0.12em] text-ink-soft">AYNI ATÖLYEDEN</h2>
-          <ul className="mt-4 grid gap-6 sm:grid-cols-3">
+          <ul className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-3">
             {related.map((item) => (
               <li key={item.slug}>
-                <Link href={item.kind === "door-model" ? `/kapi-yapilandir/${item.slug}` : `/urun/${item.slug}`} className="font-serif text-xl">
-                  {item.title}
-                </Link>
+                <ShopCard card={toShopCard(item, catalogueImages)} />
               </li>
             ))}
           </ul>

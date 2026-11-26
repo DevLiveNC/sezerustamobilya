@@ -24,7 +24,7 @@ test("kapı ölçüsü hata verir, bağlantı durur, adet birleşir", async ({ p
 
 test("teklif WhatsApp bağlantısında ürün adı durur", async ({ page }) => {
   await page.goto("/urun/el-oymasi-sandik-ornek");
-  await page.getByRole("button", { name: "Teklif listesine ekle" }).evaluate((element: HTMLButtonElement) => element.click());
+  await page.getByRole("button", { name: "Teklif listesine ekle" }).first().evaluate((element: HTMLButtonElement) => element.click());
   await expect(page.getByRole("dialog", { name: "Teklif listesi" })).toContainText("sandık");
   await page.goto("/teklif");
   await expect(page.getByRole("main").getByText("El oyması sandık")).toBeVisible();
