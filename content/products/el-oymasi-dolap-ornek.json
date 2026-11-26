@@ -1,0 +1,22 @@
+{
+  "kind": "carved-piece",
+  "slug": "el-oymasi-dolap-ornek",
+  "category": "el-oymasi",
+  "title": "El oyması dolap — örnek kayıt",
+  "summary": "Örnek katalog kaydı. Ağaç türü, ölçü, cila ve fotoğraf işletmeden bekleniyor.",
+  "images": [
+    {
+      "id": "dolap-front",
+      "alt": "El oyması dolap örnek kaydı için önden fotoğraf yeri",
+      "role": "front"
+    }
+  ],
+  "isSample": true,
+  "confirmedByOwner": false,
+  "publishedAt": "2026-11-26",
+  "pieceType": "dolap",
+  "wood": null,
+  "finish": null,
+  "dimensions": { "widthCm": null, "heightCm": null, "depthCm": null },
+  "availability": "mevcut"
+}

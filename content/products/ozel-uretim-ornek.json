@@ -1,0 +1,35 @@
+{
+  "kind": "custom-work",
+  "slug": "ozel-uretim-ornek",
+  "category": "ozel-uretim",
+  "title": "Özel üretim — örnek kayıt",
+  "summary": "Ölçünüze göre parça. Süre, teslimat bölgesi ve fotoğraf işletmeden bekleniyor.",
+  "images": [],
+  "isSample": true,
+  "confirmedByOwner": false,
+  "publishedAt": "2026-11-26",
+  "workType": "[SAHİP DOLDURACAK: iş türü]",
+  "steps": [
+    {
+      "title": "Ölçü",
+      "body": "Yerin ve işin ölçüsü alınır. Ölçü alma hizmetinin bölgesi işletmeden bekleniyor."
+    },
+    {
+      "title": "Çizim",
+      "body": "Parça, ölçüleriyle kâğıda çizilir; birlikte netleştirilir."
+    },
+    {
+      "title": "Oyma",
+      "body": "Desen elde, bıçakla ahşaba işlenir."
+    },
+    {
+      "title": "Cila",
+      "body": "Yüzey hazırlanır, cila ya da boya atılır. Seçenekler işletmeden bekleniyor."
+    },
+    {
+      "title": "Teslim",
+      "body": "Teslimat ve montaj bölgesi işletmeden bekleniyor."
+    }
+  ],
+  "referenceIds": ["ornek-referans"]
+}

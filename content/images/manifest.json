@@ -1,0 +1,124 @@
+{
+  "images": [
+    {
+      "id": "home-hero-4x5",
+      "src": "",
+      "width": 1600,
+      "height": 2000,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "placeholder",
+      "isPlaceholder": true,
+      "slot": "home-hero-4x5"
+    },
+    {
+      "id": "atolye-wide-3x2",
+      "src": "",
+      "width": 2400,
+      "height": 1600,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "placeholder",
+      "isPlaceholder": true,
+      "slot": "atolye-wide-3x2"
+    },
+    {
+      "id": "hands-carving-1x1",
+      "src": "",
+      "width": 1600,
+      "height": 1600,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "placeholder",
+      "isPlaceholder": true,
+      "slot": "hands-carving-1x1"
+    },
+    {
+      "id": "sandik-front",
+      "src": "",
+      "width": 1600,
+      "height": 2000,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "placeholder",
+      "isPlaceholder": true,
+      "slot": "product-front"
+    },
+    {
+      "id": "sandik-angle",
+      "src": "",
+      "width": 1600,
+      "height": 2000,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "placeholder",
+      "isPlaceholder": true,
+      "slot": "product-angle"
+    },
+    {
+      "id": "sandik-detail",
+      "src": "",
+      "width": 3000,
+      "height": 3000,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "placeholder",
+      "isPlaceholder": true,
+      "slot": "product-detail"
+    },
+    {
+      "id": "sandik-scale",
+      "src": "",
+      "width": 1500,
+      "height": 2000,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "placeholder",
+      "isPlaceholder": true,
+      "slot": "product-scale"
+    },
+    {
+      "id": "ayna-front",
+      "src": "",
+      "width": 1600,
+      "height": 2000,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "placeholder",
+      "isPlaceholder": true,
+      "slot": "product-front"
+    },
+    {
+      "id": "dolap-front",
+      "src": "",
+      "width": 1600,
+      "height": 2000,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "placeholder",
+      "isPlaceholder": true,
+      "slot": "product-front"
+    },
+    {
+      "id": "ref-ornek",
+      "src": "",
+      "width": 2000,
+      "height": 1500,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "placeholder",
+      "isPlaceholder": true,
+      "slot": "reference-after"
+    },
+    {
+      "id": "ref-once",
+      "src": "",
+      "width": 2000,
+      "height": 1500,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "placeholder",
+      "isPlaceholder": true,
+      "slot": "reference-before"
+    },
+    {
+      "id": "ref-sonra",
+      "src": "",
+      "width": 2000,
+      "height": 1500,
+      "blurDataURL": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "credit": "placeholder",
+      "isPlaceholder": true,
+      "slot": "reference-after"
+    }
+  ]
+}

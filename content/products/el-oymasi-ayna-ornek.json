@@ -1,0 +1,22 @@
+{
+  "kind": "carved-piece",
+  "slug": "el-oymasi-ayna-cercevesi-ornek",
+  "category": "el-oymasi",
+  "title": "El oyması ayna çerçevesi — örnek kayıt",
+  "summary": "Örnek katalog kaydı. Ağaç türü, ölçü, cila ve fotoğraf işletmeden bekleniyor.",
+  "images": [
+    {
+      "id": "ayna-front",
+      "alt": "El oyması ayna çerçevesi örnek kaydı için önden fotoğraf yeri",
+      "role": "front"
+    }
+  ],
+  "isSample": true,
+  "confirmedByOwner": false,
+  "publishedAt": "2026-11-26",
+  "pieceType": "ayna-cercevesi",
+  "wood": null,
+  "finish": null,
+  "dimensions": { "widthCm": null, "heightCm": null, "depthCm": null },
+  "availability": "mevcut"
+}

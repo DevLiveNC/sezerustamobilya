@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  --color-shaving: #f2eadf;
+  --color-oak: #e3d2b6;
+  --color-linen: #faf6ef;
+  --color-ink: #211b16;
+  --color-ink-soft: #6a5d50;
+  --color-walnut: #4a3426;
+  --color-varnish: #a8662e;
+  --color-olive: #5a5c3a;
+  --color-line: #d3c2a8;
+  --color-sold: #8c7b6b;
+  --color-danger: #9e3b2e;
+  --font-sans: var(--font-hanken), system-ui, sans-serif;
+  --font-display: var(--font-instrument-serif), "Young Serif", Georgia, serif;
+  --font-wordmark: var(--font-young-serif), Georgia, serif;
+  --font-serif: var(--font-young-serif), Georgia, serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+}
+
+body {
+  background: var(--color-shaving);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}

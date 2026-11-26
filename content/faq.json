@@ -1,0 +1,26 @@
+[
+  {
+    "id": "kapi-olcusu",
+    "question": "Kapı ölçüsünü nasıl iletmeliyim?",
+    "answer": "[SAHİP DOLDURACAK: cevap]",
+    "isSample": true
+  },
+  {
+    "id": "tek-adet",
+    "question": "El oyması parçalar neden tek adet?",
+    "answer": "[SAHİP DOLDURACAK: cevap]",
+    "isSample": true
+  },
+  {
+    "id": "teslimat",
+    "question": "Teslimat ve montaj nereye yapılır?",
+    "answer": "[SAHİP DOLDURACAK: cevap]",
+    "isSample": true
+  },
+  {
+    "id": "garanti",
+    "question": "Kapı garantisi ne kadar sürer, neyi kapsar?",
+    "answer": "[SAHİP DOLDURACAK: cevap]",
+    "isSample": true
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "kind": "carved-piece",
+  "slug": "el-oymasi-sandik-satildi-ornek",
+  "category": "el-oymasi",
+  "title": "El oyması sandık — satıldı örnek kayıt",
+  "summary": "Örnek kayıt. Teklif listesinde satıldı işaretinin denenmesi için durur; gerçek bir satış değildir.",
+  "images": [],
+  "isSample": true,
+  "confirmedByOwner": false,
+  "publishedAt": "2026-11-26",
+  "pieceType": "sandik",
+  "wood": null,
+  "finish": null,
+  "dimensions": { "widthCm": null, "heightCm": null, "depthCm": null },
+  "availability": "satildi"
+}
